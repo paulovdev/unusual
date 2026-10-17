@@ -86,7 +86,7 @@ const Works = ({
         className="
           relative top-0 w-full h-screen 
           grid grid-cols-5 p-5 gap-5 group cursor-pointer pointer-events-auto
-           max-lg:flex max-lg:flex-col max-lg:items-start "
+           max-lg:flex max-lg:flex-col max-lg:items-start max-lg:px-2.5"
         onMouseEnter={() => {
           setHover(work.id);
         }}
@@ -255,7 +255,11 @@ const HomeWorks = ({ work = worksData, lenis }) => {
 
   return (
     <>
-      <section id="works" className="relative pointer-events-none">
+      <section
+        id="works"
+        data-nav-theme="light"
+        className="relative pointer-events-none"
+      >
         <div
           className="relative top-0 px-5 grid grid-cols-5 z-50 
           max-lg:flex max-lg:flex-col max-lg:items-start max-md:px-0"
@@ -274,7 +278,7 @@ const HomeWorks = ({ work = worksData, lenis }) => {
         <div className="absolute inset-0 z-70">
           <div
             className="sticky top-0 h-screen p-5 grid grid-cols-5 
-          max-lg:flex max-lg:justify-end max-lg:items-end"
+          max-lg:flex max-lg:justify-end max-lg:items-end max-lg:px-5"
           >
             <div className="col-start-3 col-span-full mb-2.5 ml-3 flex items-end gap-15 max-lg:gap-10">
               <div className="w-60 h-15 absolute bottom-1.5 right-[49%] pointer-events-auto z-70"></div>

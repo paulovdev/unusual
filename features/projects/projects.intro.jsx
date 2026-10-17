@@ -1,8 +1,5 @@
 import { ClipText } from "@/components/clip-text";
-import { RevealText } from "@/components/reveal-text";
 import { motion } from "motion/react";
-import { MdOutlineArrowDownward } from "react-icons/md";
-import { useInView } from "react-intersection-observer";
 
 const textSlide = {
   initial: { y: "100%" },
@@ -16,14 +13,14 @@ const textSlide = {
   }),
 };
 
-const ProjectsIntro = ({ work }) => {
-  const { ref, inView } = useInView({
-    threshold: 0,
-    triggerOnce: true,
-  });
-
+const ProjectsIntro = () => {
   return (
-    <section id="about" className="pt-75 mb-10 px-5 grid grid-cols-5" ref={ref}>
+    <section
+      id="projects"
+      data-nav-theme="dark"
+      className="pt-75 mb-10 px-5 grid grid-cols-5 
+      max-lg:flex max-lg:flex-col max-lg:items-start max-lg:justify-end "
+    >
       <div className="col-start-3 col-span-2 flex flex-col items-start">
         <div className="relative col-span-full col-start-3 flex flex-col items-start justify-end">
           <ClipText
@@ -37,7 +34,7 @@ const ProjectsIntro = ({ work }) => {
             className="ml-15 font-neue font-light text-[clamp(36px,6vw,72px)] text-p text-start tracking-[-7%] leading-none"
           />
 
-          <div className="relative mt-10 ml-15 mb-5 h-fit overflow-hidden ">
+          <div className="relative mt-5 ml-15 mb-5 h-fit overflow-hidden ">
             <motion.p
               initial="initial"
               animate="animate"

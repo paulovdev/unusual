@@ -64,10 +64,11 @@ const HomeStatement = () => {
   return (
     <section
       id="statement"
-      className="h-fit grid grid-cols-5 max-lg:flex max-lg:flex-col max-lg:items-start "
+      data-nav-theme="dark"
+      className="w-full h-fit grid grid-cols-5 max-lg:flex max-lg:flex-col max-lg:items-start "
       ref={ref}
     >
-      <div className="p-5 col-span-2 size-full flex items-start justify-between max-lg:order-1">
+      <div className="p-5 col-span-2 size-full flex items-start justify-between max-lg:order-1 max-lg:px-2.5">
         <motion.figure
           initial={{ clipPath: "inset(0% 0% 100% 0%)" }}
           animate={{
@@ -78,19 +79,24 @@ const HomeStatement = () => {
               ease: [0.76, 0, 0.24, 1],
             },
           }}
-          className="relative w-full h-screen bg-bg-p-2 max-lg:h-[75vh] max-md:h-[55vh] 
+          className="relative w-full h-screen bg-bg-p-2 flex items-center justify-center max-lg:h-[75vh] max-md:h-[55vh] 
              will-change-auto"
         >
           <Image
             src={bgCover}
-            fill
+            width={2000}
+            height={2000}
             alt="Interior design showpiece"
-            className="object-cover p-40 w-275 h-150 max-lg:w-full max-lg:p-25 max-md:p-20"
+            className="object-cover w-100 h-100 
+         max-md:w-75 max-md:h-75"
             placeholder="blur"
           />
         </motion.figure>
       </div>
-      <div className="pt-10 p-5 relative col-start-3 col-span-full flex flex-col items-start justify-between">
+      <div
+        className="pt-10 p-5 relative w-full col-start-3 col-span-full flex flex-col items-start justify-between
+      max-lg:px-2.5"
+      >
         <div className="w-full flex items-start justify-between">
           <div className="flex flex-col">
             <RevealText
@@ -123,7 +129,7 @@ const HomeStatement = () => {
           </div>
         </div>
 
-        <div className="flex flex-col ">
+        <div className="w-full flex flex-col">
           <div className="my-15 w-full h-px bg-p/10 max-lg:my-10"></div>
           <div className="flex items-start justify-between gap-2.5 max-lg:flex-col">
             {services.map((service) => (

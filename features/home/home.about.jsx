@@ -25,6 +25,7 @@ const HomeAbout = () => {
   return (
     <section
       id="about"
+      data-nav-theme="dark"
       className="mb-5 w-full h-fit flex flex-col items-start"
       ref={container}
     >
@@ -33,7 +34,7 @@ const HomeAbout = () => {
       max-lg:pt-10 max-lg:flex max-lg:flex-col max-lg:items-start "
       >
         <div
-          className="col-span-2 p-5 relative w-full flex items-start justify-start max-lg:order-2"
+          className="col-span-2 p-5 relative w-full flex items-start justify-start max-lg:order-2 max-lg:px-2.5"
           ref={reelView}
         >
           <motion.figure
@@ -106,7 +107,7 @@ const HomeAbout = () => {
           </motion.figure>
         </div>
 
-        <div className="col-span-3 p-5 w-full flex flex-col items-start max-lg:order-1">
+        <div className="col-span-3 p-5 w-full flex flex-col items-start max-lg:order-1 max-lg:px-2.5">
           <div className="flex flex-col items-start " ref={ref}>
             <div className="mb-10 flex items-center gap-4">
               <span className="relative -top-0.5 size-2 rotate-45 bg-p" />

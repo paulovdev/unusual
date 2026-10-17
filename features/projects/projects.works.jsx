@@ -80,7 +80,7 @@ const WorksGrid = ({ work, index }) => {
         ease: [0.76, 0, 0.24, 1],
         delay: 0.035 * index,
       }}
-      className={`${index === 0 ? "col-span-2 mr-2.5" : "col-start-3 col-span-full w-full"}`}
+      className={`${index === 0 ? "col-span-2 w-full max-lg:mb-2.5" : "col-start-3 col-span-full w-full max-lg:col-start-1 max-lg:mb-2.5"}`}
     >
       <motion.div
         animate={{
@@ -98,11 +98,11 @@ const WorksGrid = ({ work, index }) => {
         <figure className="absolute inset-0 size-full overflow-hidden group">
           <Image
             src={work.heroMedia.image}
-            className="size-full  object-cover brightness-75 group-hover:scale-110
+            className="size-full object-cover brightness-75 group-hover:scale-110
            transition-all duration-500 ease-[cubic-bezier(0.76,0,0.24,1)]"
           />
 
-          <div className="absolute  inset-5 flex items-center justify-start z-10">
+          <div className="absolute inset-5 flex items-center justify-start z-10">
             <div className="w-full flex items-center justify-between">
               {[work.title].map((phrases, i) => (
                 <div key={i}>
@@ -196,9 +196,7 @@ const WorksList = ({
                 animate={"animate"}
                 delay={0.15 * i}
                 tag="h2"
-                className="font-neue font-light
-                  text-[clamp(36px,6vw,72px)] text-p text-start tracking-[-7%]
-                  leading-[.9]"
+                className="font-neue font-light text-[clamp(36px,6vw,72px)] text-p text-start tracking-[-7%] leading-none"
               />
             </div>
           ))}
@@ -272,7 +270,7 @@ const SpacesWorks = ({ work = worksData, activeFiltersCount }) => {
 
   return (
     <>
-      <div className="relative top-0 z-10 mb-50 flex w-full items-center justify-between bg-bg-s px-5 py-5 max-lg:px-5">
+      <div className="relative top-0 z-10 mb-50 flex w-full items-center justify-between bg-bg-s p-5 max-lg:px-2.5">
         <AnimatePresence mode="wait">
           {!openCat && (
             <motion.div
@@ -295,9 +293,10 @@ const SpacesWorks = ({ work = worksData, activeFiltersCount }) => {
                   ease: [0.88, 0, 0.24, 1],
                 },
               }}
-              className="w-full grid grid-cols-5"
+              className="w-full grid grid-cols-5 
+              max-lg:flex max-lg:items-center max-lg:justify-between"
             >
-              <div className="col-start-3 col-span-full flex items-center justify-between">
+              <div className="col-start-3 col-span-full w-full flex items-center justify-between">
                 <motion.button
                   whileTap={{ scale: 1.1 }}
                   whileHover={{ scale: 1.05, backgroundColor: "#f5f5f5" }}
@@ -314,7 +313,6 @@ const SpacesWorks = ({ work = worksData, activeFiltersCount }) => {
                 </motion.button>
 
                 <div className="flex items-center gap-5">
-                  {/* SEARCH */}
                   <motion.button
                     whileTap={{ scale: 1.1 }}
                     whileHover={{ scale: 1.05, backgroundColor: "#f5f5f5" }}
@@ -324,7 +322,6 @@ const SpacesWorks = ({ work = worksData, activeFiltersCount }) => {
                     <IoIosSearch className="text-[24px] text-s group-hover:text-p" />
                   </motion.button>
 
-                  {/* LAYOUT */}
                   <motion.button
                     whileTap={{ scale: 1.1 }}
                     whileHover={{ scale: 1.05, backgroundColor: "#f5f5f5" }}
@@ -347,7 +344,10 @@ const SpacesWorks = ({ work = worksData, activeFiltersCount }) => {
       </div>
 
       {layout === "grid" ? (
-        <div className="relative -top-50 p-5 grid grid-cols-5">
+        <div
+          className="relative -top-60 p-5 grid grid-cols-5 gap-2.5 
+        max-lg:gap-0 max-lg:grid-cols-2 max-md:grid-cols-1  max-lg:px-2.5"
+        >
           <AnimatePresence mode="wait">
             {filteredWorks.map((item, i) => (
               <WorksGrid key={item.title} work={item} index={i} />

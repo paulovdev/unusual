@@ -36,6 +36,7 @@ const StudioIntro = () => {
   return (
     <section
       id="intro"
+      data-nav-theme="light"
       className="relative w-full h-dvh overflow-hidden"
       ref={container}
     >
@@ -54,10 +55,10 @@ const StudioIntro = () => {
             priority
           />
         </figure>
-        <div className="absolute inset-0 p-5 size-full flex items-center justify-center">
+        <div className="absolute inset-0 p-5 size-full flex items-center justify-center max-lg:px-2.5">
           <div
             className="absolute inset-0 p-5 size-full grid grid-cols-5 
-          max-lg:flex max-lg:flex-col max-lg:items-end max-lg:justify-end "
+          max-lg:flex max-lg:flex-col max-lg:items-end max-lg:justify-end max-lg:px-2.5"
           >
             <div className="relative col-span-full col-start-3 flex flex-col items-start justify-end">
               <ClipText

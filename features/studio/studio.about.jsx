@@ -14,8 +14,13 @@ const StudioAbout = () => {
   });
 
   return (
-    <section id="about" ref={aboutRef} className="w-full bg-s text-p">
-      <div className="px-5 pt-20 pb-15 max-lg:pt-10">
+    <section
+      id="about"
+      data-nav-theme="dark"
+      ref={aboutRef}
+      className="w-full bg-s text-p"
+    >
+      <div className="px-5 pt-20 pb-15 max-lg:pt-10 max-lg:px-2.5">
         <div className="mb-10 flex items-center gap-4">
           <span className="relative -top-0.5 size-2 rotate-45 bg-p" />
           <RevealText
@@ -93,7 +98,7 @@ const StudioAbout = () => {
         className="pt-40 w-full grid grid-cols-5
        max-lg:pt-10 max-lg:flex max-lg:flex-col max-lg:items-start "
       >
-        <div className="col-start-3 col-span-full px-5 flex flex-col items-start justify-between">
+        <div className="col-start-3 col-span-full px-5 flex flex-col items-start justify-between max-lg:px-2.5">
           <RevealText
             text="Unusual develops timeless landmarks shaped by architecture, design and creative landscapes with a deep understanding of contemporary luxury."
             className="mb-10 font-neue font-light

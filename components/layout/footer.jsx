@@ -46,12 +46,16 @@ const Footer = () => {
   const itemOpacity = useTransform(scrollYProgress, [0.4, 0.6], [0, 1]);
 
   return (
-    <section ref={container} className="relative h-[400vh] select-none">
+    <footer
+      ref={container}
+      data-nav-theme="light"
+      className="relative h-[400vh] select-none"
+    >
       <div className="sticky top-0 w-full h-screen flex flex-col items-center justify-center overflow-hidden">
         <div
           className="sticky top-0 p-5 w-full h-screen 
         flex flex-col items-center justify-center gap-5 overflow-hidden z-30 
-        max-lg:p-5"
+         max-lg:px-2.5"
         >
           <div className="overflow-hidden max-lg:h-fit">
             <motion.h1
@@ -74,7 +78,7 @@ const Footer = () => {
           >
             <motion.div
               className="absolute inset-0 size-full 
-            flex items-center justify-center z-10 max-lg:p-5 "
+            flex items-center justify-center z-10  max-lg:px-2.5"
             >
               <motion.div
                 style={{
@@ -92,7 +96,7 @@ const Footer = () => {
                 style={{ opacity: itemOpacity }}
                 className="absolute p-5 size-full
                 flex flex-col items-start justify-center 
-                 max-lg:p-5 pointer-events-auto
+                  max-lg:px-2.5pointer-events-auto
            "
               >
                 <motion.p
@@ -201,7 +205,7 @@ const Footer = () => {
           <div className="relative size-full bg-bg-p will-change-transform" />
         </div>
       </div>
-    </section>
+    </footer>
   );
 };
 

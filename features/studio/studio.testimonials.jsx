@@ -128,7 +128,13 @@ const StudioTestimonials = () => {
     triggerOnce: true,
   });
   return (
-    <section id="about" className="px-5 pt-20 max-lg:pt-10 " ref={ref}>
+    <section
+      id="testimonials"
+      data-nav-theme="dark"
+      className="px-5 pt-20 
+      max-lg:pt-10 max-lg:px-2.5"
+      ref={ref}
+    >
       <div
         className="w-full grid grid-cols-5 
       max-lg:flex max-lg:flex-col max-lg:items-start "

@@ -107,7 +107,7 @@ const HomeArticles = ({ lenis }) => {
       <section
         id="articles"
         ref={ref}
-        className="relative py-15 px-5 overflow-hidden"
+        className="relative py-15 px-5 overflow-hidden max-lg:px-2.5"
       >
         <div className="mb-10 flex items-center justify-between">
           <div className="flex items-center gap-4">

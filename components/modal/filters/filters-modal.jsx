@@ -46,8 +46,8 @@ export const FiltersModal = ({ lenis }) => {
   const {
     activeYear,
     setActiveYear,
-    activeScope, // <-- Corrigido aqui
-    setActiveScope, // <-- Corrigido aqui
+    activeScope,  
+    setActiveScope, 
     activeServices,
     setActiveServices,
     activeFeatured,

@@ -94,7 +94,8 @@ const StudioNumbers = () => {
   return (
     <section
       id="what-we-do"
-      className="relative h-[200vh] p-5 py-15 max-lg:py-10 max-lg:h-[150vh]"
+      data-nav-theme="light"
+      className="relative h-[200vh] p-5 py-15 max-lg:py-10 max-lg:h-[150vh] max-lg:px-2.5"
       ref={ref}
     >
       <div className="absolute inset-0 w-screen h-full" ref={container}>

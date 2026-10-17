@@ -21,13 +21,15 @@ const StudioTeam = ({ lenis }) => {
     { name: "Ethan Walker", top: "55%", left: "22%" },
     { name: "Sophie Mitchell", top: "42%", left: "49%" },
     { name: "Lucas Anderson", top: "56%", left: "81%" },
-    /*   { name: "Olivia Bennett", top: "61%", left: "72%" },
-    { name: "Maya Collins", top: "58%", left: "88%" }, */
   ];
 
   return (
     <>
-      <section className="relative w-full bg-p text-s overflow-hidden">
+      <section
+        id="team"
+        data-nav-theme="light"
+        className="relative w-full bg-p text-s overflow-hidden"
+      >
         <div
           ref={container}
           className="max-lg:hidden flex relative items-center justify-center min-h-screen h-screen w-full overflow-hidden"
@@ -103,7 +105,7 @@ const StudioTeam = ({ lenis }) => {
               className="object-cover brightness-75"
             />
             <div className="absolute inset-0 bg-gradient-to-t from-p via-transparent to-transparent" />
-            <div className="absolute bottom-5 left-5">
+            <div className="absolute bottom-5 left-5 max-lg:left-2.5">
               <div className="mb-10 flex items-center gap-3">
                 <span className="relative -top-0.5 size-2 rotate-45 bg-s/60" />
                 <RevealText
@@ -119,7 +121,10 @@ const StudioTeam = ({ lenis }) => {
             </div>
           </div>
 
-          <div className="grid grid-cols-1 gap-2.5 px-5 max-lg:grid-cols-2 max-md:grid-cols-1">
+          <div
+            className="grid grid-cols-1 gap-2.5 px-5
+           max-lg:grid-cols-2 max-md:grid-cols-1 max-lg:px-2.5"
+          >
             {team.map((member) => (
               <button
                 key={member.name}

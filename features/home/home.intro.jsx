@@ -13,9 +13,7 @@ import {
   useTransform,
 } from "motion/react";
 
-import { MdOutlineArrowDownward } from "react-icons/md";
 import { usePreLoader } from "@/store/pageTransition";
-import { RevealText } from "@/components/reveal-text";
 import { ClipText } from "@/components/clip-text";
 
 const textSlide = {
@@ -141,6 +139,7 @@ const HomeIntro = () => {
   return (
     <section
       id="intro"
+      data-nav-theme="light"
       className="relative w-full h-dvh overflow-hidden z-20"
       ref={container}
     >
@@ -161,8 +160,8 @@ const HomeIntro = () => {
           }
         >
           <div
-            className="loader-container absolute  max-md:p-5 inset-0 
-          flex items-center "
+            className="loader-container absolute max-lg:px-2.5 inset-0 
+          flex items-center"
             style={
               hasPlayedPreloader
                 ? {
@@ -313,7 +312,7 @@ const HomeIntro = () => {
 
         <div
           className="absolute inset-0 p-5 size-full grid grid-cols-5 
-         max-lg:flex max-lg:flex-col max-lg:items-end max-lg:justify-end "
+         max-lg:px-2.5 max-lg:flex max-lg:flex-col max-lg:items-end max-lg:justify-end "
         >
           <div className="relative col-span-full col-start-3 flex flex-col items-start justify-end">
             <ClipText
