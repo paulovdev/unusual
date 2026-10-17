@@ -1,0 +1,31 @@
+"use client";
+
+import { useRef } from "react";
+import { useInView } from "framer-motion";
+import { ClipText } from "@/components/ui/clip-text";
+
+export function RevealText({
+  text,
+  tag = "p",
+  className,
+  indent = 0,
+  delay,
+  exit = false,
+}) {
+  const ref = useRef(null);
+  const isInView = useInView(ref, { once: true, amount: 0.2 });
+
+  return (
+    <div ref={ref}>
+      <ClipText
+        text={text}
+        animate={isInView ? "animate" : "initial"}
+        exit={exit}
+        tag={tag}
+        className={className}
+        indent={indent}
+        delay={delay}
+      />
+    </div>
+  );
+}

@@ -1,0 +1,187 @@
+@import "tailwindcss";
+
+@font-face {
+  font-family: "inter";
+  src: url("/fonts/inter.ttf") format("truetype");
+}
+
+@font-face {
+  font-family: "chivo";
+  src: url("/fonts/chivo.ttf") format("truetype");
+  font-weight: 100 900;
+}
+
+@font-face {
+  font-family: "Neue Montreal";
+  src: url("/fonts/NeueMontreal-Light.otf") format("opentype");
+  font-weight: 300;
+}
+
+@font-face {
+  font-family: "Neue Montreal";
+  src: url("/fonts/NeueMontreal-Regular.otf") format("opentype");
+  font-weight: 500;
+}
+
+@font-face {
+  font-family: "Neue Montreal";
+  src: url("/fonts/NeueMontreal-Medium.otf") format("opentype");
+  font-weight: 700;
+}
+
+@font-face {
+  font-family: "Neue Montreal";
+  src: url("/fonts/NeueMontreal-Bold.otf") format("opentype");
+  font-weight: 800;
+}
+
+@theme {
+  --color-p: #080807;
+  --color-s: #f9f4ee;
+  --color-bg-p: #212325;
+  --color-bg-p-2: #262626;
+  --color-bg-s: #f9f4ec;
+  --color-bg-s-2: #f5f5f5;
+  --color-bg-t: #000000;
+
+  --color-brd: #ededed;
+
+  --font-neue: "Neue Montreal";
+  --font-inter: "inter";
+  --font-chivo: "chivo";
+
+  --breakpoint-full-ds: 1900px;
+  --breakpoint-xxs: 1600px;
+  --breakpoint-ds: 1262px;
+  --breakpoint-lg: 992px;
+  --breakpoint-md: 768px;
+  --breakpoint-sm: 450px;
+  --breakpoint-xsm: 380px;
+}
+
+@layer components {
+  .text-chivo-p-14 {
+    @apply font-chivo font-semibold 
+    text-p text-[14px] tracking-widest leading-none uppercase max-lg:text-[12px]
+    will-change-transform;
+  }
+  .text-chivo-s-14 {
+    @apply font-chivo font-semibold 
+    text-s text-[14px] tracking-widest leading-none uppercase max-lg:text-[12px]
+    will-change-transform;
+  }
+  .text-chivo-n-14 {
+    @apply font-chivo font-semibold 
+    text-[14px] tracking-widest leading-none uppercase max-lg:text-[12px]
+     will-change-transform;
+  }
+  .text-chivo-sn-14 {
+    @apply font-chivo font-semibold 
+    text-[14px] leading-none uppercase max-lg:text-[12px]
+     will-change-transform;
+  }
+
+  .big-text-intro-p {
+    @apply font-neue font-bold 
+    text-[clamp(68px,8vw,112px)] tracking-[-0.05em]
+    leading-none uppercase will-change-transform;
+  }
+
+  .big-text-1-n {
+    @apply font-neue font-bold
+    text-[clamp(36px,6vw,90px)] text-start tracking-[-0.06em]
+    leading-none uppercase;
+  }
+
+  .big-text-2-n {
+    @apply font-neue font-bold
+     text-[clamp(30px,6vw,72px)] text-start tracking-[-0.06em]
+    leading-none uppercase;
+  }
+
+  .big-text-3-n {
+    @apply font-neue font-bold
+     text-[clamp(30px,6vw,52px)] text-start tracking-[-0.06em]
+    leading-none uppercase;
+  }
+
+  .paragraph-p {
+    @apply font-neue  font-medium 
+    text-p text-[clamp(16px,4vw,22px)] tracking-[-0.04em] leading-[1.2]
+    will-change-transform;
+  }
+  .paragraph-n {
+    @apply font-neue  font-medium 
+    text-[clamp(16px,4vw,22px)] tracking-[-0.04em] leading-[1.2]
+    will-change-transform;
+  }
+
+  .triangle-s {
+    @apply relative -top-px size-2 bg-s rotate-45 max-lg:size-2 max-lg:top-0;
+  }
+
+  .triangle-p {
+    @apply relative -top-px size-2 bg-p rotate-45 max-lg:size-2 max-lg:top-0;
+  }
+}
+
+html {
+  -webkit-font-smoothing: antialiased !important;
+  -moz-osx-font-smoothing: grayscale !important;
+  font-smooth: never !important;
+  letter-spacing: 0;
+  background: #ffffff;
+}
+
+body {
+  box-sizing: border-box;
+  padding: 0;
+  margin: 0;
+  width: 100dvw;
+  min-height: 100vh;
+  min-height: 100dvh;
+  font-family: "Azeret Mono", sans-serif;
+  background: #ffffff;
+}
+
+::-webkit-scrollbar {
+  display: none;
+}
+
+.noise::before {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  content: "";
+  opacity: 0.03;
+  z-index: 1000;
+  pointer-events: none;
+  background: url("../public/noise.gif");
+}
+
+::view-transition-old(root),
+::view-transition-new(root) {
+  animation: none !important;
+}
+
+::view-transition-group(root) {
+  z-index: auto !important;
+}
+
+::view-transition-image-pair(root) {
+  isolation: isolate;
+  will-change: transform, opacity, clip-path;
+  z-index: 1;
+}
+
+::view-transition-new(root) {
+  z-index: 99999999;
+  animation: none !important;
+}
+
+::view-transition-old(root) {
+  z-index: 1;
+  animation: none !important;
+}
