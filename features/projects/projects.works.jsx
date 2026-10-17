@@ -1,6 +1,5 @@
 "use client";
 
-import ImageComponent from "@/components/ui/image";
 import { worksData } from "@/data/works-data";
 import { AnimatePresence, motion } from "motion/react";
 import { IoIosSearch } from "react-icons/io";
