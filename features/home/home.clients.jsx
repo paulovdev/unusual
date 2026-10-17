@@ -1,6 +1,5 @@
 "use client";
 import { motion } from "motion/react";
-import { useInView } from "react-intersection-observer";
 import { useRef, useState } from "react";
 import { clients } from "@/data/data";
 
