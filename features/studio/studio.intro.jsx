@@ -1,5 +1,5 @@
 import { useRef } from "react";
-import bgCover from "@/public/assets/images/about/bg-1.jpg";
+import bgCover from "@/public/assets/images/about/bg-hero.jpg";
 import Image from "next/image";
 
 import {
@@ -10,6 +10,7 @@ import {
 } from "motion/react";
 
 import { ClipText } from "@/components/clip-text";
+
 const textSlide = {
   initial: { y: "100%" },
   animate: (custom) => ({
@@ -44,17 +45,30 @@ const StudioIntro = () => {
         className="relative w-screen h-screen overflow-hidden transform-gpu"
         style={{ y, filter }}
       >
-        <figure className="absolute inset-0 w-full overflow-hidden">
-          <Image
-            src={bgCover}
-            width={4000}
-            height={4000}
-            alt="home-hero-image"
-            className="object-cover size-full brightness-75"
-            placeholder="blur"
-            priority
-          />
-        </figure>
+        <div className="absolute inset-0 w-full">
+          <motion.figure
+            initial={{ scale: 1 }}
+            animate={{
+              scale: 1.1,
+              transition: {
+                duration: 0.8,
+                ease: [0.76, 0, 0.24, 1],
+              },
+            }}
+            exit={{ scale: 1 }}
+            className="size-full overflow-hidden"
+          >
+            <Image
+              src={bgCover}
+              width={4000}
+              height={4000}
+              alt="home-hero-image"
+              className="object-cover size-full brightness-75"
+              placeholder="blur"
+              priority
+            />
+          </motion.figure>
+        </div>
         <div className="absolute inset-0 p-5 size-full flex items-center justify-center max-lg:px-2.5">
           <div
             className="absolute inset-0 p-5 size-full grid grid-cols-5 
@@ -63,12 +77,12 @@ const StudioIntro = () => {
             <div className="relative col-span-full col-start-3 flex flex-col items-start justify-end">
               <ClipText
                 animate="animate"
-                text="A Developer"
+                text="A Spatial Practice"
                 className="font-neue font-light text-[clamp(36px,6vw,72px)] text-s text-start tracking-[-7%] leading-none"
               />
               <ClipText
                 animate="animate"
-                text="Building For Generations"
+                text="Crafting Silent Luxury"
                 className="ml-15 font-neue font-light text-[clamp(36px,6vw,72px)] text-s text-start tracking-[-7%] leading-none"
               />
 
@@ -81,7 +95,7 @@ const StudioIntro = () => {
                   className="font-chivo font-medium text-s 
     text-[14px] tracking-widest leading-none uppercase "
                 >
-                  unusual® studio
+                  unusual® studio — about
                 </motion.p>
               </div>
             </div>

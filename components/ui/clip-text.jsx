@@ -34,7 +34,7 @@ export const ClipText = ({
   const words = text.split(" ");
 
   return (
-    <h2 className={className}>
+    <div className={className}>
       {words.map((word, index) => (
         <span
           key={index}
@@ -47,12 +47,12 @@ export const ClipText = ({
             animate={animate}
             exit={exit && "exit"}
             custom={delay + index * 0.025}
-            className="inline-block will-change-transform"
+            className="inline-block will-change-transform px-[0.05em]"
           >
             {word} {children}
           </motion.span>
         </span>
       ))}
-    </h2>
+    </div>
   );
 };

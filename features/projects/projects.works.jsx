@@ -11,6 +11,7 @@ import { useCallback, useRef, useState } from "react";
 
 import { ClipText } from "@/components/ui/clip-text";
 import Image from "next/image";
+import { RevealText } from "@/components/reveal-text";
 
 const textSlide = {
   initial: { y: "100%" },
@@ -100,41 +101,24 @@ const WorksGrid = ({ work, index }) => {
             src={work.heroMedia.image}
             className="size-full object-cover brightness-75 group-hover:scale-110
            transition-all duration-500 ease-[cubic-bezier(0.76,0,0.24,1)]"
+            alt="0"
+            width={2000}
+            height={2000}
           />
 
           <div className="absolute inset-5 flex items-center justify-start z-10">
-            <div className="w-full flex items-center justify-between">
-              {[work.title].map((phrases, i) => (
-                <div key={i}>
-                  <ClipText
-                    text={phrases}
-                    animate={"animate"}
-                    delay={0.15 * i}
-                    tag="h2"
-                    className="font-neue font-light
-                  text-[clamp(36px,6vw,72px)] text-s text-start tracking-[-7%]
-                  leading-[.9]"
-                  />
-                </div>
-              ))}
+            <div className="w-full flex flex-col items-start justify-center">
+              <RevealText
+                text={work.title}
+                className="font-neue font-light text-[clamp(36px,6vw,72px)] text-s text-start tracking-[-7%] leading-[.9]"
+              />
 
-              <div className="h-[16px] overflow-hidden">
-                <motion.div
-                  initial="initial"
-                  animate="animate"
-                  custom={0.25}
-                  variants={textSlide}
-                  className="mb-10 flex items-center justify-between"
-                >
-                  <div className="flex items-center gap-5">
-                    <span className="triangle-s left-1" />
-
-                    <p className="text-chivo-s-14">{work.titleMark}</p>
-                  </div>
-
-                  <p className="text-chivo-s-14">{work.category}</p>
-                </motion.div>
-              </div>
+              <RevealText
+                text={work.location}
+                className="relative left-1.5 font-neue font-normal 
+    text-s/60 text-[clamp(16px,4vw,20px)] tracking-[-4%] leading-none"
+                delay={0.1}
+              />
             </div>
           </div>
         </figure>
@@ -189,17 +173,17 @@ const WorksList = ({
             scale: hovered === index ? 1.02 : 1,
           }}
         >
-          {[work.title].map((phrases, i) => (
-            <div key={i}>
-              <ClipText
-                text={phrases}
-                animate={"animate"}
-                delay={0.15 * i}
-                tag="h2"
-                className="font-neue font-light text-[clamp(36px,6vw,72px)] text-p text-start tracking-[-7%] leading-none"
-              />
-            </div>
-          ))}
+          <RevealText
+            text={work.title}
+            className="font-neue font-light text-[clamp(36px,6vw,72px)] text-p text-start tracking-[-7%] leading-[.9]"
+          />
+
+          <RevealText
+            text={work.location}
+            className="relative left-1.5 font-neue font-normal 
+    text-p/60 text-[clamp(16px,4vw,20px)] tracking-[-4%] leading-none"
+            delay={0.1}
+          />
         </motion.div>
 
         <motion.div
@@ -391,6 +375,9 @@ const SpacesWorks = ({ work = worksData, activeFiltersCount }) => {
                     <Image
                       src={preview.heroMedia.image}
                       className="size-full object-cover"
+                      alt="0"
+                      width={2000}
+                      height={2000}
                     />
                   </motion.div>
 

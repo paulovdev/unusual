@@ -5,18 +5,24 @@ import { motion, useScroll, useSpring } from "motion/react";
 import Lenis from "lenis";
 import { IoClose } from "react-icons/io5";
 
-import { ClipText } from "@/components/ui/clip-text";
 import Image from "next/image";
+import { RevealText } from "@/components/reveal-text";
 
 const menuAnim = {
   initial: { clipPath: "inset(0% 100% 0% 0%)" },
   animate: {
     clipPath: "inset(0% 0% 0% 0%)",
-    transition: { duration: 0.5, ease: [0.76, 0, 0.24, 1] },
+    transition: {
+      duration: 0.8,
+      ease: [0.76, 0, 0.24, 1],
+    },
   },
   exit: {
     clipPath: "inset(0% 100% 0% 0%)",
-    transition: { duration: 0.5, ease: [0.76, 0, 0.24, 1] },
+    transition: {
+      duration: 0.8,
+      ease: [0.76, 0, 0.24, 1],
+    },
   },
 };
 
@@ -24,11 +30,17 @@ const overlayAnim = {
   initial: { opacity: 0 },
   animate: {
     opacity: 1,
-    transition: { duration: 0.5, ease: [0.76, 0, 0.24, 1] },
+    transition: {
+      duration: 0.8,
+      ease: [0.76, 0, 0.24, 1],
+    },
   },
   exit: {
     opacity: 0,
-    transition: { duration: 0.5, ease: [0.76, 0, 0.24, 1] },
+    transition: {
+      duration: 0.8,
+      ease: [0.76, 0, 0.24, 1],
+    },
   },
 };
 
@@ -167,36 +179,55 @@ const ArticleModalContent = ({ article }) => {
     <div className="size-full flex flex-col items-end justify-between max-lg:gap-5">
       <div className="w-full flex flex-col max-lg:mb-5">
         <div className="mt-25 h-fit overflow-hidden max-lg:mt-20 max-lg:mb-5">
-          <p className="mb-4 text-chivo-p-14">{article.publishedAt}</p>
-          {[article.title].map((phrases, i) => (
-            <div key={i}>
-              <ClipText
-                text={phrases}
-                animate={"animate"}
-                delay={0.15 * i}
-                tag="h2"
-                className="font-neue font-bold
-                text-[clamp(32px,6vw,52px)] text-start tracking-[-0.05em]
-                leading-none uppercase"
-              />
-            </div>
-          ))}
+          <RevealText
+            text={article.publishedAt}
+            className="mb-5 font-chivo font-semibold 
+text-[14px] tracking-widest uppercase text-p/60
+leading-[.9]"
+          />
+          <RevealText
+            text={article.title}
+            className="font-neue font-light
+                  text-[clamp(36px,6vw,72px)] text-p text-start tracking-[-7%]
+                  leading-[.9]"
+          />
         </div>
 
         <div className="mt-10 w-full h-px bg-p/15 max-lg:mt-0"></div>
         <div className="mt-10 max-w-200 w-full flex items-start gap-10">
           <div className="flex-1 flex flex-col gap-3 justify-self-end">
-            <p className="text-chivo-n-14 text-p/75">reading time</p>
-            <p className="text-chivo-p-14">3 min</p>
+            <RevealText
+              text="reading time"
+              className="font-chivo font-semibold 
+            text-[14px] tracking-widest uppercase text-p/60
+            leading-[.9]"
+            />
+            <RevealText
+              text="3 min"
+              className="font-chivo font-semibold 
+            text-[14px] tracking-widest uppercase text-p
+            leading-[.9]"
+            />
           </div>
           <div className="flex-1 flex flex-col gap-3 justify-self-end">
-            <p className="text-chivo-n-14 text-p/75">published by</p>
-            <p className="text-chivo-p-14">{article.credits}</p>
+            <RevealText
+              text="published by"
+              className="font-chivo font-semibold 
+            text-[14px] tracking-widest uppercase text-p/60
+            leading-[.9]"
+            />
+            <RevealText
+              text={article.credits}
+              className="font-chivo font-semibold 
+            text-[14px] tracking-widest uppercase text-p
+            leading-[.9]"
+            />
           </div>
         </div>
         <figure className="relative mt-15 w-full h-[75vh] overflow-hidden max-lg:h-[40vh] max-lg:mt-5">
           <Image
             src={article.heroMedia.image}
+            alt="0"
             className="object-cover brightness-75 size-full"
           />
         </figure>
@@ -222,8 +253,14 @@ const ArticleTextBlock = ({ block }) => {
     <div className="my-10 w-full flex max-lg:flex-col max-lg:gap-5">
       <div className="flex-1 max-lg:mb-5">
         <div className="flex items-center gap-5">
-          <span className="triangle-p left-1" />
-          {block.label && <p className="text-chivo-p-14">{block.label}</p>}
+          <span className="relative left-1 -top-0.5 size-2 rotate-45 bg-p" />
+          <RevealText
+            text={block.label}
+            className="font-chivo font-semibold 
+    text-[14px] tracking-widest uppercase text-p
+    leading-[.9]"
+            delay={0.1}
+          />
         </div>
       </div>
 
@@ -231,7 +268,12 @@ const ArticleTextBlock = ({ block }) => {
         {(Array.isArray(block.text) ? block.text : [block.text]).map(
           (phrases, i) => (
             <div key={i} className="max-w-150 mb-5 h-fit overflow-hidden">
-              <h2 className="paragraph-p">{phrases}</h2>
+              <RevealText
+                text={phrases}
+                className="mb-10 font-neue font-normal 
+    text-p text-[clamp(16px,4vw,20px)] tracking-[-4%] leading-none"
+                delay={0.2}
+              />
             </div>
           ),
         )}

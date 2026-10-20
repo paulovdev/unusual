@@ -1,26 +1,21 @@
 import { useInView } from "react-intersection-observer";
-import bgCover from "@/public/assets/images/home/bg.jpg";
+import pillarsCover from "@/public/assets/images/home/pillars.png";
 import { motion } from "motion/react";
 
-import {
-  LuFilter,
-  LuGlobe,
-  LuLampCeiling,
-  LuPanelTop,
-  LuRuler,
-  LuSofa,
-} from "react-icons/lu";
+import { LuRuler, LuPanelTop, LuSofa, LuFilter } from "react-icons/lu";
 
 import Image from "next/image";
 import { RevealText } from "@/components/reveal-text";
+import TransitionLink from "@/components/ui/link";
+import Button from "@/components/ui/button";
 
-const services = [
+const pillarsData = [
   {
     id: "01",
-    title: "Architectural Planning",
+    title: "Volume & Scale",
     description:
-      "We design layouts, spatial flows, and architectural details that define how each room functions and is experienced.",
-    button: "architectural projects",
+      "Sculpting layout balance, structural harmony, and natural light channels to build raw architectural foundations.",
+    button: "explore space",
     href: "/studio",
     icon: LuRuler,
     bg: "bg-[#101010]",
@@ -29,10 +24,10 @@ const services = [
   },
   {
     id: "02",
-    title: "Interior Design",
+    title: "Tactile Atmosphere",
     description:
-      "Creating complete interiors with a perfect balance of materials, proportion, and timeless aesthetic language.",
-    button: "exclusive interiors",
+      "Curating refined material palettes, organic finishes, and light interactions that give living areas an ethereal presence.",
+    button: "view interiors",
     href: "/studio",
     icon: LuPanelTop,
     bg: "bg-[#202020]",
@@ -41,10 +36,10 @@ const services = [
   },
   {
     id: "03",
-    title: "Custom & Styling",
+    title: "Bespoke Curation",
     description:
-      "Selecting and curating bespoke furniture, artwork, and decor elements that enhance the identity of your home.",
-    button: "custom furniture",
+      "Designing custom joinery, sourcing collector items, and positioning art pieces that complete the spatial narrative.",
+    button: "discover curation",
     href: "/studio",
     icon: LuSofa,
     icon2: LuFilter,
@@ -83,11 +78,11 @@ const HomeStatement = () => {
              will-change-auto"
         >
           <Image
-            src={bgCover}
+            src={pillarsCover}
             width={2000}
             height={2000}
             alt="Interior design showpiece"
-            className="object-cover w-100 h-100 
+            className="object-cover w-125 h-125 
          max-md:w-75 max-md:h-75"
             placeholder="blur"
           />
@@ -95,36 +90,36 @@ const HomeStatement = () => {
       </div>
       <div
         className="pt-10 p-5 relative w-full col-start-3 col-span-full flex flex-col items-start justify-between
-      max-lg:px-2.5"
+max-lg:px-2.5"
       >
         <div className="w-full flex items-start justify-between">
           <div className="flex flex-col">
             <RevealText
-              text="Creating"
+              text="Curating "
               className="font-neue font-light
-                  text-[clamp(36px,6vw,72px)] text-p text-start tracking-[-7%]
-                  leading-[.9]"
+  text-[clamp(36px,6vw,72px)] text-p text-start tracking-[-7%]
+  leading-[.9]"
             />
             <RevealText
-              text="Generational"
+              text="Sculpting Modern"
               className="ml-15 font-neue font-light
-                  text-[clamp(36px,6vw,72px)] text-p text-start tracking-[-7%]
-                  leading-[.9]"
+  text-[clamp(36px,6vw,72px)] text-p text-start tracking-[-7%]
+  leading-[.9]"
             />
             <RevealText
-              text="Spaces"
+              text="Silent Proportions"
               className="font-neue font-light
-                  text-[clamp(36px,6vw,72px)] text-p text-start tracking-[-7%]
-                  leading-[.9]"
+  text-[clamp(36px,6vw,72px)] text-p text-start tracking-[-7%]
+  leading-[.9]"
             />
           </div>
           <div className="mb-15 flex items-center gap-4">
             <span className="relative -top-0.5 size-2 rotate-45 bg-p" />
             <RevealText
-              text="what we do"
+              text="our pillars"
               className="font-chivo font-semibold 
-    text-[14px] tracking-widest uppercase text-p
-    leading-[.9]"
+text-[14px] tracking-widest uppercase text-p
+leading-[.9]"
             />
           </div>
         </div>
@@ -132,46 +127,60 @@ const HomeStatement = () => {
         <div className="w-full flex flex-col">
           <div className="my-15 w-full h-px bg-p/10 max-lg:my-10"></div>
           <div className="flex items-start justify-between gap-2.5 max-lg:flex-col">
-            {services.map((service) => (
+            {pillarsData.map((item) => (
               <div
-                key={service.id}
-                className="w-full  border-p/10 p-2.5 flex flex-col items-start justify-end max-lg:border-b "
+                key={item.id}
+                className="w-full border-p/10 p-2.5 flex flex-col items-start justify-end max-lg:border-b"
               >
                 <div className="h-full flex flex-col items-start justify-between">
-                  <div className="w-full mb-25 flex items-center justify-between max-lg:mb-15">
-                    {service.icon2 ? (
+                  <div className="w-full min-h-40 flex items-center justify-between max-lg:mb-15">
+                    {item.icon2 ? (
                       <div className="flex items-center gap-2">
-                        <div className="p-4">
-                          <service.icon className="text-p text-[32px]" />
+                        <div className="">
+                          <item.icon className="text-p text-[30px]" />
                         </div>
-                        +
-                        <div className="p-4">
-                          <service.icon2 className="text-p text-[32px]" />
+                        <span className="ml-2 font-chivo font-semibold text-[22px] tracking-widest uppercase text-p">
+                          +
+                        </span>
+                        <div className="">
+                          <item.icon2 className="text-p text-[28px]" />
                         </div>
                       </div>
                     ) : (
-                      <div className="p-4">
-                        <service.icon className="text-p text-[32px]" />
+                      <div className="">
+                        <item.icon className="text-p text-[30px]" />
                       </div>
                     )}
                   </div>
 
-                  <div className="max-w-125 flex flex-col items-start">
+                  <div className="max-w-125 min-h-10 flex flex-col items-start">
                     <div className="mb-10 flex items-center gap-4">
                       <span className="relative -top-0.5 size-2 rotate-45 bg-p" />
                       <RevealText
-                        text={service.title}
+                        text={item.title}
                         className="font-chivo font-semibold 
-    text-[14px] tracking-widest uppercase text-p
-    leading-[.9]"
+text-[14px] tracking-widest uppercase text-p
+leading-[.9]"
                       />
                     </div>
 
                     <RevealText
-                      text={service.description}
-                      className="mb-10 font-neue  font-normal 
-    text-p text-[clamp(16px,4vw,20px)] tracking-[-4%] leading-[1.1]"
+                      text={item.description}
+                      className="min-h-35 font-neue font-normal 
+    text-p text-[clamp(16px,4vw,20px)] tracking-[-4%] leading-none"
                     />
+
+                    <TransitionLink href={item.href} className="mb-10">
+                      <Button
+                        text={item.button}
+                        bg="bg-p"
+                        textColor="text-s"
+                        iconColor="text-s"
+                        hoverBg="bg-bg-s-2"
+                        hoverTextColor="text-p"
+                        hoverIconColor="text-p"
+                      />
+                    </TransitionLink>
                   </div>
                 </div>
               </div>

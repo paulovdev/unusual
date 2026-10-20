@@ -1,5 +1,5 @@
 "use client";
-import bgCover from "@/public/assets/images/price.jpg";
+
 import HomeIntro from "@/features/home/home.intro";
 import { usePageTransition, usePreLoader } from "@/store/pageTransition";
 import Lenis from "lenis";
@@ -12,7 +12,6 @@ import HomeWorks from "./home.works";
 import HomeStatement from "./home.statement";
 import HomeClients from "./home.clients";
 import HomeArticles from "./home.articles";
-
 import Footer from "@/components/layout/footer";
 
 const HomeHero = () => {
@@ -32,10 +31,17 @@ const HomeHero = () => {
 
     lenisRef.current = lenis;
 
+    if (!isReadyPreLoader) {
+      lenis.stop();
+    } else {
+      lenis.start();
+    }
+
     return () => {
       lenis.destroy();
+      lenisRef.current = null;
     };
-  }, [isReady]);
+  }, [isReady, isReadyPreLoader]);
 
   return (
     <>
@@ -43,13 +49,12 @@ const HomeHero = () => {
       {isReady && (
         <>
           <motion.main className="relative bg-bg-s">
-            <HomeIntro />
+            <HomeIntro lenis={lenisRef} />
             <HomeAbout />
             <HomeClients />
             <HomeWorks lenis={lenisRef} />
             <HomeStatement />
             <HomeArticles lenis={lenisRef} />
-            {/*   <HomeCTA lenis={lenisRef} /> */}
           </motion.main>
           <Footer />
         </>

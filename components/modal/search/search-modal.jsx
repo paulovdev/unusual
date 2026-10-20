@@ -10,28 +10,23 @@ import { BiSearch } from "react-icons/bi";
 import { useWorkStore } from "@/store/useWorkStore";
 import { RxUpdate } from "react-icons/rx";
 import { worksData } from "@/data/works-data";
-
-const textSlide = {
-  initial: { y: "100%" },
-  animate: (custom) => ({
-    y: "0%",
-    transition: {
-      duration: 0.8,
-      ease: [0.33, 1, 0.68, 1],
-      delay: custom,
-    },
-  }),
-};
+import { RevealText } from "@/components/reveal-text";
 
 const menuAnim = {
   initial: { clipPath: "inset(0% 0% 0% 100%)" },
   animate: {
     clipPath: "inset(0% 0% 0% 0%)",
-    transition: { duration: 0.5, ease: [0.76, 0, 0.24, 1] },
+    transition: {
+      duration: 0.8,
+      ease: [0.76, 0, 0.24, 1],
+    },
   },
   exit: {
     clipPath: "inset(0% 0% 0% 100%)",
-    transition: { duration: 0.5, ease: [0.76, 0, 0.24, 1] },
+    transition: {
+      duration: 0.8,
+      ease: [0.76, 0, 0.24, 1],
+    },
   },
 };
 
@@ -39,11 +34,17 @@ const overlayAnim = {
   initial: { opacity: 0 },
   animate: {
     opacity: 1,
-    transition: { duration: 0.5, ease: [0.76, 0, 0.24, 1] },
+    transition: {
+      duration: 0.8,
+      ease: [0.76, 0, 0.24, 1],
+    },
   },
   exit: {
     opacity: 0,
-    transition: { duration: 0.5, ease: [0.76, 0, 0.24, 1] },
+    transition: {
+      duration: 0.8,
+      ease: [0.76, 0, 0.24, 1],
+    },
   },
 };
 
@@ -161,19 +162,13 @@ export const SearchModal = ({ lenis, work = worksData }) => {
           className="size-full overflow-y-scroll"
           ref={scrollRef}
         >
-          <div className="mb-15 flex flex-col items-start">
-            <div className="mt-25 mb-5 h-fit overflow-hidden">
-              <motion.h2
-                variants={textSlide}
-                initial="initial"
-                animate="animate"
-                className="font-neue font-light
+          <div className="mt-25 mb-5 flex flex-col items-start">
+            <RevealText
+              text="To look for"
+              className="mb-5 font-neue font-light
                               text-[clamp(36px,6vw,72px)] text-p text-start tracking-[-7%]
                               leading-[.9]"
-              >
-                To look for
-              </motion.h2>
-            </div>
+            />
 
             <div className="relative w-full max-lg:mb-10">
               <input
@@ -182,7 +177,9 @@ export const SearchModal = ({ lenis, work = worksData }) => {
                 onChange={(e) => setQuery(e.target.value)}
                 placeholder="search for projects..."
                 className="w-full p-5 border border-p/10 outline-none 
-                text-chivo-p-14"
+                font-chivo font-semibold 
+    text-[14px] tracking-widest uppercase text-p
+    leading-[.9]"
               />
               {query ? (
                 <span
@@ -204,19 +201,22 @@ export const SearchModal = ({ lenis, work = worksData }) => {
 
             <div className="my-10 w-full flex items-start max-lg:flex-col max-lg:gap-5">
               <div className="flex-1">
-                <div className="relative left-1 size-fit flex items-center gap-4 max-lg:mb-0">
-                  <span className="triangle-p" />
-
+                <div className="relative left-1 size-fit flex items-center gap-5 max-lg:mb-0">
+                  <span className="relative left-1 -top-px size-2 rotate-45 bg-p" />
                   {query === "" ? (
-                    <p className="text-chivo-p-14">suggestions</p>
+                    <RevealText
+                      text="suggestions"
+                      className="font-chivo font-semibold 
+    text-[14px] tracking-widest uppercase text-p
+    leading-[.9]"
+                    />
                   ) : (
-                    <p className="text-chivo-p-14">
-                      {suggestions.length === 1 ? (
-                        <span>{suggestions.length} result</span>
-                      ) : (
-                        <span>{suggestions.length} results</span>
-                      )}
-                    </p>
+                    <RevealText
+                      text={`${suggestions.length} ${
+                        suggestions.length === 1 ? "result" : "results"
+                      }`}
+                      className="font-chivo font-semibold text-[14px] tracking-widest uppercase text-p leading-[.9]"
+                    />
                   )}
                 </div>
               </div>
@@ -225,9 +225,6 @@ export const SearchModal = ({ lenis, work = worksData }) => {
                   <motion.div
                     key={item.title}
                     layout
-                    initial={{ opacity: 0, y: 20 }}
-                    animate={{ opacity: 1, y: 0 }}
-                    exit={{ opacity: 0, y: -20 }}
                     className="relative w-full group"
                     onClick={() => {
                       setActiveWork(item);
@@ -248,13 +245,23 @@ export const SearchModal = ({ lenis, work = worksData }) => {
                       />
 
                       <div className="absolute left-5 bottom-5">
-                        <p className="mb-2 text-chivo-s-14">{item.title}</p>
+                        <RevealText
+                          text={item.title}
+                          className="mb-2 font-chivo font-semibold 
+    text-[14px] tracking-widest uppercase text-s
+    leading-[.9]"
+                          delay={0.1}
+                        />
 
                         <div className="size-fit flex items-center gap-3">
-                          <span className="triangle-s size-2 bg-s/50" />
-                          <p className="text-chivo-n-14 text-[12px] text-s/50">
-                            {item.titleMark}
-                          </p>
+                          <span className="relative left-1 -top-px size-2 rotate-45 bg-s/60" />
+                          <RevealText
+                            text={item.titleMark}
+                            className="font-chivo font-semibold 
+    text-[14px] tracking-widest uppercase text-s/60
+    leading-[.9]"
+                            delay={0.2}
+                          />
                         </div>
                       </div>
                     </figure>

@@ -29,7 +29,7 @@ const textSlide = {
 };
 
 const wait = (ms) => new Promise((resolve) => setTimeout(resolve, ms));
-const HomeIntro = () => {
+const HomeIntro = ({ lenis }) => {
   const container = useRef(null);
   const {
     isReadyPreLoader,
@@ -45,12 +45,18 @@ const HomeIntro = () => {
   const [scope, animate] = useAnimate();
 
   useEffect(() => {
+    scrollTo({ top: 0, behavior: "instant" });
     if (hasPlayedPreloader) {
-      usePreLoader.getState().setReadyPreLoader(true);
+      setReadyPreLoader(true);
+      lenis?.current?.start();
       return;
     }
 
     const run = async () => {
+      scrollTo({ top: 0, behavior: "instant" });
+      lenis?.current?.stop();
+      setReadyPreLoader(false);
+
       document.body.style.cursor = "wait";
       document.body.style.overflow = "hidden";
       document.documentElement.style.overflow = "hidden";
@@ -114,23 +120,30 @@ const HomeIntro = () => {
         ),
         animate(
           ".loader-text",
-          { y: -20 },
+          { y: -30 },
           { duration: 0.8, ease: [0.33, 1, 0.68, 1] },
         ),
       ]);
-
-      await wait(600);
       setReadyPreLoader(true);
+      await wait(600);
 
       document.body.style.cursor = "auto";
       document.body.style.overflow = "";
       document.documentElement.style.overflow = "";
 
       setHasPlayedPreloader(true);
+
+      lenis?.current?.start();
     };
 
     run();
-  }, [animate, hasPlayedPreloader, setReadyPreLoader, setHasPlayedPreloader]);
+  }, [
+    animate,
+    hasPlayedPreloader,
+    lenis,
+    setReadyPreLoader,
+    setHasPlayedPreloader,
+  ]);
 
   const y = useTransform(scrollYProgress, [0, 1], ["0%", "30%"]);
   const brightness = useTransform(scrollYProgress, [0, 0.8], ["100%", "0%"]);
@@ -171,7 +184,7 @@ const HomeIntro = () => {
             }
           >
             <div
-              className="loader-image relative w-100 h-100  overflow-hidden
+              className="loader-image relative w-100 h-100 overflow-hidden
               max-md:h-75
           "
               style={
@@ -278,14 +291,21 @@ const HomeIntro = () => {
             </div>
           </div>
 
-          <div className="absolute left-196 bottom-7 max-md:bottom-5">
-            <div className="w-[calc(100%+15px)] h-fit overflow-hidden ">
+          <div className="absolute left-196 bottom-7 max-md:bottom-3 max-lg:left-2.5">
+            <div className="w-[calc(100%+15px)] h-[25px] overflow-hidden ">
               <motion.div
-                initial={{ y: 20 }}
-                className="loader-text text-chivo-p-14 text-start flex items-center gap-6"
+                initial={{ y: 30 }}
+                className="loader-text flex items-center gap-6"
               >
-                <span className="relative left-2 -top-px size-2.5 bg-p rotate-45" />
-                loading
+                <span className="relative left-2 -top-px size-2 rotate-45 bg-p" />
+                <p
+                  className="font-chivo font-semibold 
+    text-[14px] tracking-widest uppercase text-p
+    leading-[.9]"
+                >
+                  loading
+                </p>
+
                 <div className="relative -left-4 -top-1 flex items-center">
                   {[0, 1, 2].map((item) => (
                     <motion.span
@@ -294,7 +314,7 @@ const HomeIntro = () => {
                         opacity: [0.2, 1, 0.2],
                       }}
                       transition={{
-                        duration: 1,
+                        duration: 0.8,
                         repeat: Infinity,
                         delay: item * 0.2,
                         ease: "easeInOut",
@@ -310,6 +330,7 @@ const HomeIntro = () => {
           </div>
         </div>
 
+        {/* HOME */}
         <div
           className="absolute inset-0 p-5 size-full grid grid-cols-5 
          max-lg:px-2.5 max-lg:flex max-lg:flex-col max-lg:items-end max-lg:justify-end "
@@ -317,12 +338,12 @@ const HomeIntro = () => {
           <div className="relative col-span-full col-start-3 flex flex-col items-start justify-end">
             <ClipText
               animate={isReadyPreLoader && "animate"}
-              text="Creators of"
+              text="Architects of"
               className="font-neue font-light text-[clamp(36px,6vw,72px)] text-s text-start tracking-[-7%] leading-none"
             />
             <ClipText
               animate={isReadyPreLoader && "animate"}
-              text="Refined Living"
+              text="Silent Luxury"
               className="ml-15 font-neue font-light text-[clamp(36px,6vw,72px)] text-s text-start tracking-[-7%] leading-none"
             />
 
@@ -335,7 +356,7 @@ const HomeIntro = () => {
                 className="font-chivo font-medium text-s 
     text-[14px] tracking-widest leading-none uppercase "
               >
-                Living & Iconic Spaces
+                Spatial Identity for Visionaries
               </motion.p>
             </div>
           </div>

@@ -95,7 +95,7 @@ export const awards = [
     organization: "Dezeen Awards",
     category: "Residential Interior of the Year",
     description:
-      "Reconhecimento internacional para projetos residenciais que demonstram excelência em arquitetura interior, materiais e experiência espacial.",
+      "International recognition honoring residential projects that demonstrate unmatched excellence in interior architecture, materiality, and spatial experience.",
     result: "Winner",
   },
   {
@@ -104,7 +104,7 @@ export const awards = [
     organization: "Andrew Martin International Interior Design Awards",
     category: "Best Residential Furniture & Artwork",
     description:
-      "Premiação global que celebra designers de interiores com abordagem única em mobiliário, arte, composição e identidade visual dos espaços.",
+      "Global award celebrating interior designers with a distinct, tailored vision for bespoke furniture, fine art curation, and spatial composition.",
     result: "Winner",
   },
   {
@@ -113,7 +113,7 @@ export const awards = [
     organization: "European Design Awards",
     category: "Best Use of Material — Residential",
     description:
-      "Reconhecimento pela utilização excepcional de materiais, texturas e soluções construtivas aplicadas a interiores residenciais.",
+      "Recognized for exceptional mastery over tactile materials, raw finishes, and innovative craftsmanship in high-end residential interiors.",
     result: "Winner",
   },
   {
@@ -122,7 +122,7 @@ export const awards = [
     organization: "Society of British Interior Design",
     category: "Private Residential",
     description:
-      "Premiação dedicada aos melhores projetos de interiores residenciais, destacando criatividade, funcionalidade e execução.",
+      "Honoring world-class private residential projects that seamlessly balance spatial functionality with understated luxury.",
     result: "Highly Commended",
   },
   {
@@ -131,7 +131,7 @@ export const awards = [
     organization: "Wallpaper*",
     category: "Interior Design Studio of the Year",
     description:
-      "Reconhecimento internacional por uma abordagem sofisticada em arquitetura interior, design contemporâneo e criação de espaços atemporais.",
+      "Celebrated globally for a sophisticated practice in interior architecture, contemporary form, and the creation of timeless environments.",
     result: "Winner",
   },
   {
@@ -140,7 +140,7 @@ export const awards = [
     organization: "House & Garden",
     category: "Heritage Residential Design",
     description:
-      "Seleção dos principais profissionais de interiores reconhecendo projetos residenciais com atenção à história, proporção e detalhes artesanais.",
+      "Selected among top global interior designers, celebrating residences engineered with deep respect for proportion, light, and artisanal detail.",
     result: "Winner",
   },
 ];

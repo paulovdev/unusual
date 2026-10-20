@@ -25,7 +25,7 @@ const Card = ({ testimonial, inView }) => {
             clipPath: inView ? "inset(0% 0% 0% 0%)" : "inset(0% 100% 0% 0%)",
 
             transition: {
-              duration: 1,
+              duration: 0.8,
               ease: [0.76, 0, 0.24, 1],
             },
           }}
@@ -59,7 +59,7 @@ const Card = ({ testimonial, inView }) => {
               clipPath: inView ? "inset(0% 0% 0% 0%)" : "inset(0% 100% 0% 0%)",
 
               transition: {
-                duration: 1,
+                duration: 0.8,
                 ease: [0.76, 0, 0.24, 1],
               },
             }}
@@ -84,6 +84,7 @@ const Card = ({ testimonial, inView }) => {
     leading-[.9] max-lg:mb-15"
             indent={100}
             exit={true}
+            once={false}
           />
         </div>
         <div className="flex-1 w-full flex items-center justify-between ">
@@ -93,6 +94,7 @@ const Card = ({ testimonial, inView }) => {
     text-[14px] tracking-widest uppercase text-p
     leading-[.9] "
             exit={true}
+            once={false}
           />
           <RevealText
             text={testimonial.client}
@@ -100,6 +102,7 @@ const Card = ({ testimonial, inView }) => {
     text-[14px] tracking-widest uppercase text-p
     leading-[.9] "
             exit={true}
+            once={false}
           />
         </div>
       </motion.div>

@@ -140,8 +140,8 @@ const Works = ({
                 },
               }}
               custom={0}
-              className="max-w-125 font-neue  font-normal 
-    text-s/85 text-[clamp(16px,4vw,20px)] tracking-[-4%] leading-[1.1]"
+              className="max-w-125 font-neue font-normal 
+    text-s/60 text-[clamp(16px,4vw,20px)] tracking-[-4%] leading-none"
             >
               {work.location}
             </motion.p>
@@ -176,6 +176,7 @@ const Works = ({
                 placeholder="blur"
                 className="size-full object-cover brightness-75
                 "
+                alt="0"
               />
             </motion.figure>
           </div>
@@ -267,7 +268,7 @@ const HomeWorks = ({ work = worksData, lenis }) => {
           <div className="relative top-15 px-5 col-start-3 size-fit flex items-center gap-4">
             <span className="relative -top-0.5 size-2 rotate-45 bg-s" />
             <RevealText
-              text="Selected projects"
+              text="SELECTED CASE STUDIES"
               className="font-chivo font-semibold 
               text-[14px] tracking-widest uppercase text-s
               leading-[.9]"

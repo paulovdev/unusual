@@ -80,10 +80,16 @@ const StudioTeam = ({ lenis }) => {
                           transition={{ duration: 0.3 }}
                           className="flex flex-col opacity-0 group-hover:opacity-100 transition-opacity duration-300  p-1.5 rounded"
                         >
-                          <span className="mb-1 font-neue  font-normal text-s text-[clamp(16px,4vw,20px)] tracking-[-0.04em] leading-[1.2] sspace-nowrap">
+                          <span
+                            className="mb-1 font-neue font-normal 
+    text-s text-[clamp(16px,4vw,20px)] tracking-[-4%] leading-none space-nowrap"
+                          >
                             {member.name}
                           </span>
-                          <span className="font-chivo font-semibold text-[12px] tracking-widest uppercase text-s/60 leading-none sspace-nowrap">
+                          <span
+                            className="font-neue font-normal 
+    text-s/60 text-[clamp(16px,4vw,20px)] tracking-[-4%] leading-none space-nowrap"
+                          >
                             {member.role}
                           </span>
                         </motion.div>

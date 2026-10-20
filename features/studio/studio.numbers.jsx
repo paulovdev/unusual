@@ -18,28 +18,27 @@ import { AiOutlinePlus } from "react-icons/ai";
 
 const numbers = [
   {
-    number: 75,
+    number: 12,
     suffix: "+",
-    label: "Years of heritage",
+    label: "Years of spatial design excellence",
     bg: "bg-[#101010]",
   },
   {
-    number: 180,
-    prefix: "£",
-    suffix: "M+",
-    label: "Landmarks built",
+    number: 140,
+    suffix: "+",
+    label: "Private sanctuaries & residences crafted",
     bg: "bg-[#202020]",
   },
   {
-    number: 300,
-    suffix: "+",
-    label: "Global awards",
+    number: 28,
+    suffix: "",
+    label: "International awards & editorial features",
     bg: "bg-[#303030]",
   },
   {
-    number: 25,
-    suffix: "+",
-    label: "Transformed residential environments",
+    number: 95,
+    suffix: "%",
+    label: "Bespoke furniture & custom joinery integrated",
     bg: "bg-[#404040]",
   },
 ];
@@ -116,7 +115,7 @@ const StudioNumbers = () => {
           <div className="mb-10 flex items-center gap-4 max-lg:mb-15">
             <span className="relative -top-0.5 size-2 rotate-45 bg-s" />
             <RevealText
-              text="metrics"
+              text="proven impact"
               className="font-chivo font-semibold 
              text-[14px] tracking-widest uppercase text-s
              leading-[.9]"
@@ -147,7 +146,7 @@ const StudioNumbers = () => {
                       }}
                       className="
                    font-neue font-semibold text-[clamp(36px,6vw,82px)] text-s text-start tracking-[-7%] leading-none
-                    will-change-transform max-md:text-[clamp(48px,2vw,42px)]
+                   will-change-transform max-md:text-[clamp(48px,2vw,42px)]
                   "
                     >
                       <CounterNumber
@@ -158,14 +157,15 @@ const StudioNumbers = () => {
                       />
                     </motion.h2>
                   </div>
-                  {[item.label].map((phrases, i) => (
-                    <div key={i} className="max-w-75">
+                  {[item.label].map((phrases, index) => (
+                    <div key={index} className="max-w-75">
                       <ClipText
                         text={phrases}
                         animate={inView && "animate"}
                         delay={0.15 * i}
                         tag="h2"
-                        className="mt-5 font-neue  font-normal text-start text-s/60 text-[clamp(16px,1.4vw,20px)] tracking-[-0.04em] leading-[1.2]"
+                        className="mt-5 font-neue font-normal 
+    text-s/60 text-start text-[clamp(16px,4vw,20px)] tracking-[-4%] leading-none"
                       />
                     </div>
                   ))}
@@ -186,12 +186,12 @@ const StudioNumbers = () => {
             <div className="flex flex-col items-start justify-between">
               <RevealText
                 className="font-neue font-light text-[clamp(36px,6vw,72px)] text-s text-start tracking-[-7%] leading-none"
-                text="A Quieter"
+                text="Architecting"
               />
 
               <RevealText
                 className="ml-15 font-neue font-light text-[clamp(36px,6vw,72px)] text-s text-start tracking-[-7%] leading-none"
-                text="Kind of Luxury."
+                text="Silent Distinction."
                 delay={0.1}
               />
             </div>
@@ -202,7 +202,7 @@ const StudioNumbers = () => {
               <div className="mb-10 flex items-center gap-4">
                 <span className="relative left-1 -top-1 size-2 rotate-45 bg-s max-lg:-top-0.5" />
                 <RevealText
-                  text="Awards & recognition"
+                  text="honors & accolades"
                   className="font-chivo font-semibold text-[14px] tracking-widest uppercase text-s leading-none"
                 />
               </div>
@@ -215,8 +215,8 @@ const StudioNumbers = () => {
                       className="w-full flex items-center justify-between py-4 cursor-pointer text-left"
                     >
                       <h3
-                        className="font-neue  font-normal 
-    text-s text-[clamp(16px,4vw,20px)] tracking-[-4%] leading-[1.1]"
+                        className="font-neue font-normal 
+    text-s text-[clamp(16px,4vw,20px)] tracking-[-4%] leading-none"
                       >
                         {item.title}
                       </h3>
@@ -245,12 +245,12 @@ const StudioNumbers = () => {
                     >
                       <div
                         className="py-5 font-chivo font-semibold 
-    text-[14px] tracking-widest  text-s
+    text-[14px] tracking-widest text-s
     leading-[.9] flex flex-col gap-2"
                       >
                         <div className="mb-5 flex flex-col items-start">
                           <RevealText
-                            text="Organização:"
+                            text="Organization:"
                             className="font-chivo font-semibold 
     text-[14px] tracking-widest text-s/60 uppercase
     leading-[.9]"
@@ -258,32 +258,36 @@ const StudioNumbers = () => {
                           />
                           <RevealText
                             text={item.organization}
-                            className="mt-2 font-neue  font-normal 
-    text-s text-[clamp(16px,4vw,20px)] tracking-[-4%] leading-[1.1]"
+                            className="mt-2 font-neue font-normal 
+    text-s text-[clamp(16px,4vw,20px)] tracking-[-4%] leading-none"
                             exit={true}
+                            once={false}
                           />
                         </div>
 
                         <div className="flex flex-col items-start ">
                           <RevealText
-                            text="Categoria:"
+                            text="Category:"
                             className="font-chivo font-semibold 
     text-[14px] tracking-widest text-s/60 uppercase
     leading-[.9]"
                             exit={true}
+                            once={false}
                           />
                           <RevealText
                             text={item.category}
-                            className="mt-2 font-neue  font-normal 
-    text-s text-[clamp(16px,4vw,20px)] tracking-[-4%] leading-[1.1]"
+                            className="mt-2 font-neue font-normal 
+    text-s text-[clamp(16px,4vw,20px)] tracking-[-4%] leading-none"
                             exit={true}
+                            once={false}
                           />
                         </div>
                         <RevealText
                           text={item.description}
-                          className="mt-5 max-w-150 font-neue  font-normal 
-    text-s text-[clamp(16px,4vw,20px)] tracking-[-4%] leading-[1.1]"
+                          className="mt-5 max-w-150 font-neue font-normal 
+    text-s text-[clamp(16px,4vw,20px)] tracking-[-4%] leading-none"
                           exit={true}
+                          once={false}
                         />
                       </div>
                     </motion.div>

@@ -126,8 +126,8 @@ const StudioAwards = () => {
                       </div>
                       <div className="my-10 w-full h-px bg-p/10"></div>
                       <RevealText
-                        className="mb-10 max-w-125 font-neue  font-normal 
-    text-p text-[clamp(16px,4vw,20px)] tracking-[-4%] leading-[1.1] will-change-auto"
+                        className="mb-10 max-w-125 font-neue font-normal 
+    text-p text-[clamp(16px,4vw,20px)] tracking-[-4%] leading-none"
                         text="Unusual develops timeless landmarks shaped by architecture, design and a deep understanding of contemporary living."
                         animate="animate"
                       >

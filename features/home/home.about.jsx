@@ -1,5 +1,5 @@
 import Button from "@/components/ui/button";
-import reelCover from "@/public/assets/images/home/reel.png";
+import reelCover from "@/public/assets/images/home/reel.jpg";
 import { useInView } from "react-intersection-observer";
 
 import TransitionLink from "@/components/ui/link";
@@ -47,7 +47,7 @@ const HomeAbout = () => {
                 : "inset(100% 100% 100% 100%)",
 
               transition: {
-                duration: 1,
+                duration: 0.8,
                 ease: [0.76, 0, 0.24, 1],
               },
             }}
@@ -69,6 +69,7 @@ const HomeAbout = () => {
               src={reelCover}
               width={4000}
               height={400}
+              alt="0"
               className="object-cover size-full brightness-75 "
             />
 
@@ -93,13 +94,13 @@ const HomeAbout = () => {
             <div className="absolute inset-8 flex items-end justify-between max-md:inset-5">
               <p
                 className="font-chivo font-semibold 
-    text-[14px] tracking-widest leading-none uppercase text-s max-lg:text-[12px] text-end"
+    text-[14px] tracking-widest leading-none uppercase text-s text-end"
               >
                 watch reel
               </p>
               <p
                 className="font-chivo font-semibold 
-    text-[14px] tracking-widest leading-none uppercase text-s max-lg:text-[12px] text-end "
+    text-[14px] tracking-widest leading-none uppercase text-s text-end "
               >
                 00:56
               </p>
@@ -112,35 +113,34 @@ const HomeAbout = () => {
             <div className="mb-10 flex items-center gap-4">
               <span className="relative -top-0.5 size-2 rotate-45 bg-p" />
               <RevealText
-                text="OUR PHILOSOPHY"
+                text="THE ETHOS"
                 className="font-chivo font-semibold 
-    text-[14px] tracking-widest uppercase text-p
-    leading-[.9]"
+text-[14px] tracking-widest uppercase text-p
+leading-[.9]"
               />
             </div>
             <RevealText
-              text="Unusual develops timeless landmarks shaped by architecture, design and creative landscapes with a deep understanding of contemporary luxury."
+              text="Unusual® Studio orchestrates subtle sanctuaries driven by tactile materiality, spatial clarity, and architectural restraint."
               className="mb-10 font-neue font-light
-    text-[clamp(36px,6vw,42px)] text-p text-start tracking-[-7%]
-    leading-[.9]"
+text-[clamp(36px,6vw,42px)] text-p text-start tracking-[-7%]
+leading-[.9]"
               indent={200}
             />
             <RevealText
-              text="Each project begins with a clear vision - to create spaces that balance elegance, privacy and enduring comfort. 
-              The result is architecture that is timeless and quietly"
+              text="We strip away the noise to uncover the raw essence of every room, crafting environments that feel effortlessly grounded, timeless, and deeply personal."
               className="mb-20 font-neue font-light
-    text-[clamp(36px,6vw,42px)] text-p text-start tracking-[-7%]
-    leading-[.9]"
+text-[clamp(36px,6vw,42px)] text-p text-start tracking-[-7%]
+leading-[.9]"
             />
             <RevealText
-              className="mb-10 max-w-125 font-neue  font-normal 
-    text-p text-[clamp(16px,4vw,20px)] tracking-[-4%] leading-[1.1]"
-              text="Unusual develops timeless landmarks shaped by architecture, design and a deep understanding of contemporary living."
+              className="mb-10 max-w-125 font-neue font-normal 
+    text-p text-[clamp(16px,4vw,20px)] tracking-[-4%] leading-none"
+              text="From private residences to curated spaces, Unusual® Studio designs with precision to elevate how you inhabit the world."
               delay={0.2}
             />
             <TransitionLink href="/studio">
               <Button
-                text="learn more"
+                text="discover the studio"
                 bg="bg-p"
                 textColor="text-s"
                 iconColor="text-s"

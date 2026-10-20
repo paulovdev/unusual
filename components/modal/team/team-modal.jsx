@@ -11,31 +11,19 @@ import { FaStarOfLife } from "react-icons/fa";
 import TextLink from "@/components/ui/text-link";
 import { RevealText } from "@/components/reveal-text";
 
-const textSlide = {
-  initial: { y: "100%" },
-  animate: (custom) => ({
-    y: "0%",
-    transition: {
-      duration: 0.8,
-      ease: [0.33, 1, 0.68, 1],
-      delay: custom,
-    },
-  }),
-};
-
 const menuAnim = {
   initial: { clipPath: "inset(0% 100% 0% 0%)" },
   animate: {
     clipPath: "inset(0% 0% 0% 0%)",
     transition: {
-      duration: 0.5,
+      duration: 0.8,
       ease: [0.76, 0, 0.24, 1],
     },
   },
   exit: {
     clipPath: "inset(0% 100% 0% 0%)",
     transition: {
-      duration: 0.5,
+      duration: 0.8,
       ease: [0.76, 0, 0.24, 1],
     },
   },
@@ -46,14 +34,14 @@ const overlayAnim = {
   animate: {
     opacity: 1,
     transition: {
-      duration: 0.5,
+      duration: 0.8,
       ease: [0.76, 0, 0.24, 1],
     },
   },
   exit: {
     opacity: 0,
     transition: {
-      duration: 0.5,
+      duration: 0.8,
       ease: [0.76, 0, 0.24, 1],
     },
   },
@@ -236,13 +224,16 @@ export const TeamModal = ({ member, lenis, onClose }) => {
               <div className="flex-2 flex flex-col">
                 {(Array.isArray(member.bio) ? member.bio : [member.bio]).map(
                   (phrases, i) => (
-                    <div className="max-w-125 mb-5 h-fit overflow-hidden">
-                      <h2
-                        className="max-w-125 font-neue font-normal 
-    text-p text-[clamp(16px,4vw,20px)] tracking-[-4%] leading-[1.1]"
-                      >
-                        {phrases}
-                      </h2>
+                    <div
+                      key={i}
+                      className="max-w-150 mb-5 h-fit overflow-hidden"
+                    >
+                      <RevealText
+                        text={phrases}
+                        className="mb-10 font-neue font-normal 
+    text-p text-[clamp(16px,4vw,20px)] tracking-[-4%] leading-none"
+                        delay={0.2}
+                      />
                     </div>
                   ),
                 )}

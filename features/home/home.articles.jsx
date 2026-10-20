@@ -48,7 +48,7 @@ const ArticleCard = ({ item, index, inView, onClick, activeArticle }) => {
         }}
         transition={{
           duration: 0.8,
-          delay: index * 0.1,
+          delay: index * 0.025,
           ease: [0.76, 0, 0.24, 1],
         }}
         className="relative w-full h-[65vh] overflow-hidden"
@@ -61,19 +61,23 @@ const ArticleCard = ({ item, index, inView, onClick, activeArticle }) => {
           transition-all duration-500
           ease-[cubic-bezier(0.76,0,0.24,1)]
           "
+          width={2000}
+          height={2000}
+          alt="0"
         />
       </motion.figure>
-      <p className="mt-5 mb-5 text-chivo-p-14">{item.publishedAt}</p>
+      <RevealText
+        text={item.publishedAt}
+        className="mt-5 mb-2.5 font-chivo font-semibold 
+    text-[14px] tracking-widest uppercase text-p
+    leading-[.9]"
+      />
       <div className="max-w-125 overflow-hidden">
-        <motion.p
-          initial="initial"
-          animate={inView && "animate"}
-          variants={textSlide}
-          custom={0.3 + index * 0.1}
-          className="paragraph-p"
-        >
-          {item.title}
-        </motion.p>
+        <RevealText
+          text={item.title}
+          className="min-h-35 font-neue font-normal 
+    text-p text-[clamp(16px,4vw,20px)] tracking-[-4%] leading-none"
+        />
       </div>
     </motion.div>
   );

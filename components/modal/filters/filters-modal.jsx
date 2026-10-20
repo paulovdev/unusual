@@ -3,28 +3,23 @@ import Lenis from "lenis";
 import { IoClose } from "react-icons/io5";
 import { motion } from "motion/react";
 import { useWorkStore } from "@/store/useWorkStore";
-
-const textSlide = {
-  initial: { y: "100%" },
-  animate: (custom) => ({
-    y: "0%",
-    transition: {
-      duration: 0.8,
-      ease: [0.33, 1, 0.68, 1],
-      delay: custom,
-    },
-  }),
-};
+import { RevealText } from "@/components/reveal-text";
 
 const menuAnim = {
-  initial: { clipPath: "inset(0% 0% 0% 100%)" },
+  initial: { clipPath: "inset(0% 100% 0% 0%)" },
   animate: {
     clipPath: "inset(0% 0% 0% 0%)",
-    transition: { duration: 0.5, ease: [0.76, 0, 0.24, 1] },
+    transition: {
+      duration: 0.8,
+      ease: [0.76, 0, 0.24, 1],
+    },
   },
   exit: {
-    clipPath: "inset(0% 0% 0% 100%)",
-    transition: { duration: 0.5, ease: [0.76, 0, 0.24, 1] },
+    clipPath: "inset(0% 100% 0% 0%)",
+    transition: {
+      duration: 0.8,
+      ease: [0.76, 0, 0.24, 1],
+    },
   },
 };
 
@@ -32,11 +27,17 @@ const overlayAnim = {
   initial: { opacity: 0 },
   animate: {
     opacity: 1,
-    transition: { duration: 0.5, ease: [0.76, 0, 0.24, 1] },
+    transition: {
+      duration: 0.8,
+      ease: [0.76, 0, 0.24, 1],
+    },
   },
   exit: {
     opacity: 0,
-    transition: { duration: 0.5, ease: [0.76, 0, 0.24, 1] },
+    transition: {
+      duration: 0.8,
+      ease: [0.76, 0, 0.24, 1],
+    },
   },
 };
 
@@ -46,8 +47,8 @@ export const FiltersModal = ({ lenis }) => {
   const {
     activeYear,
     setActiveYear,
-    activeScope,  
-    setActiveScope, 
+    activeScope,
+    setActiveScope,
     activeServices,
     setActiveServices,
     activeFeatured,
@@ -56,7 +57,7 @@ export const FiltersModal = ({ lenis }) => {
     resetFilters,
   } = useWorkStore();
 
-  const years = ["all", "2026", "2025", "2024", "2023", "2022"];
+  const years = ["all", "2026", "2025", "2024", "2023"];
 
   const categories = [
     {
@@ -138,12 +139,14 @@ export const FiltersModal = ({ lenis }) => {
 
   const Item = ({ label, active, onClick }) => (
     <button onClick={onClick} className="flex items-center gap-2 uppercase">
-      <span
-        className={`text-chivo-n-14
-           ${active ? "text-p" : "text-p/50 hover:text-p/75"}`}
-      >
-        {label}
-      </span>
+      <RevealText
+        text={label}
+        className={`font-chivo font-semibold 
+    text-[14px] tracking-widest uppercase 
+    leading-[.9]
+           ${active ? "text-p" : "text-p/60 hover:text-p/75"}`}
+        delay={0.1}
+      />
       {active && (
         <span className="relative -top-px size-3.5 rounded-full border border-p flex justify-center items-center">
           <IoClose className="text-p text-[14px]" />
@@ -155,10 +158,10 @@ export const FiltersModal = ({ lenis }) => {
   const ItemYear = ({ label, active, onClick }) => (
     <button
       onClick={onClick}
-      className={`p-2 size-25 rounded-full group
+      className={`p-2 size-35 rounded-full group
          ${active ? "bg-p" : "border border-p/10 hover:bg-p"} 
         flex items-center justify-center gap-2 uppercase 
-        transition-all duration-500 ease-[cubic-bezier(0.76,0,0.24,1)]`}
+        transition-all duration-500 ease-[cubic-bezier(0.76,0,0.24,1)] max-lg:size-30 max-md:size-20`}
     >
       <span
         className={`text-chivo-n-14 transition-all duration-500 ease-[cubic-bezier(0.76,0,0.24,1)]
@@ -242,16 +245,12 @@ export const FiltersModal = ({ lenis }) => {
           <div className="mb-15 flex flex-col items-start">
             {/* Modal Title */}
             <div className="mt-25 h-fit overflow-hidden max-lg:mb-5">
-              <motion.h2
-                variants={textSlide}
-                initial="initial"
-                animate="animate"
-                className="font-neue font-light
-                              text-[clamp(36px,6vw,72px)] text-p text-start tracking-[-7%]
-                              leading-[.9]"
-              >
-                Filters
-              </motion.h2>
+              <RevealText
+                text="Filters"
+                className="mb-5 font-neue font-light
+                text-[clamp(36px,6vw,72px)] text-p text-start tracking-[-7%]
+                leading-[.9]"
+              />
             </div>
             <div className="my-5 w-full h-px bg-p/15"></div>
 
@@ -259,15 +258,20 @@ export const FiltersModal = ({ lenis }) => {
             <div className="w-full flex items-start max-lg:flex-col max-lg:gap-5">
               <div className="flex-1 max-lg:mb-5">
                 <div className="size-fit flex items-center gap-5">
-                  <span className="relative left-1 triangle-p" />
-                  <p className="text-chivo-p-14">category</p>
+                  <span className="relative left-1 -top-0.5 size-2 rotate-45 bg-p" />
+                  <RevealText
+                    text="category"
+                    className="font-chivo font-semibold 
+    text-[14px] tracking-widest uppercase text-p
+    leading-[.9]"
+                    delay={0.1}
+                  />
                 </div>
               </div>
 
               <div className="flex-1 flex flex-col gap-4">
                 {categories.map((cat) => (
                   <Item
-                    key={cat.value}
                     label={cat.label}
                     active={activeScope.includes(cat.value)}
                     onClick={() => setActiveScope(cat.value)}
@@ -282,14 +286,19 @@ export const FiltersModal = ({ lenis }) => {
             <div className="w-full flex items-start flex-col max-lg:gap-5">
               <div className="mb-10">
                 <div className="size-fit flex items-center gap-5">
-                  <span className="relative left-1 triangle-p" />
-                  <p className="text-chivo-p-14">year</p>
+                  <span className="relative left-1 -top-0.5 size-2 rotate-45 bg-p" />
+                  <RevealText
+                    text="year"
+                    className="font-chivo font-semibold 
+    text-[14px] tracking-widest uppercase text-p
+    leading-[.9]"
+                    delay={0.1}
+                  />
                 </div>
               </div>
-              <div className="w-full flex items-center justify-between">
+              <div className="w-full flex items-center justify-between gap-2.5">
                 {years.map((y) => (
                   <ItemYear
-                    key={y}
                     label={yearLabel(y)}
                     active={activeYear === y}
                     onClick={() => setActiveYear(y)}
@@ -304,15 +313,20 @@ export const FiltersModal = ({ lenis }) => {
             <div className="w-full flex items-start max-lg:flex-col max-lg:gap-5">
               <div className="flex-1 max-lg:mb-5">
                 <div className="size-fit flex items-center gap-5">
-                  <span className="relative left-1 triangle-p" />
-                  <p className="text-chivo-p-14">services</p>
+                  <span className="relative left-1 -top-0.5 size-2 rotate-45 bg-p" />
+                  <RevealText
+                    text="services"
+                    className="font-chivo font-semibold 
+    text-[14px] tracking-widest uppercase text-p
+    leading-[.9]"
+                    delay={0.1}
+                  />
                 </div>
               </div>
 
               <div className="flex-1 flex flex-col gap-4">
                 {services.map((service) => (
                   <Item
-                    key={service.value}
                     label={service.label}
                     active={activeServices.includes(service.value)}
                     onClick={() => setActiveServices(service.value)}
@@ -327,8 +341,14 @@ export const FiltersModal = ({ lenis }) => {
             <div className="mb-15 w-full flex items-start max-lg:flex-col max-lg:gap-5">
               <div className="flex-1 max-lg:mb-5">
                 <div className="size-fit flex items-center gap-5">
-                  <span className="relative left-1 triangle-p" />
-                  <p className="text-chivo-p-14">featured</p>
+                  <span className="relative left-1 -top-0.5 size-2 rotate-45 bg-p" />
+                  <RevealText
+                    text="featured"
+                    className="font-chivo font-semibold 
+    text-[14px] tracking-widest uppercase text-p
+    leading-[.9]"
+                    delay={0.1}
+                  />
                 </div>
               </div>
 

@@ -1,4 +1,7 @@
-import article from "@/public/assets/images/awards/img-1.jpg";
+import art1 from "@/public/assets/images/home/art-1.png";
+import art2 from "@/public/assets/images/home/art-2.png";
+import art3 from "@/public/assets/images/home/art-3.png";
+import art4 from "@/public/assets/images/home/art-4.png";
 
 export const articlesData = [
   {
@@ -7,7 +10,7 @@ export const articlesData = [
     title: "The Evolution of Minimalist Interior Spaces",
     credits: "Studio RP",
     heroMedia: {
-      image: article,
+      image: art1,
     },
     sections: [
       {
@@ -33,7 +36,7 @@ export const articlesData = [
     title: "Lighting Architecture: Shaping Mood Through Light",
     credits: "Elena Rostova",
     heroMedia: {
-      image: article,
+      image: art2,
     },
     sections: [
       {
@@ -52,7 +55,7 @@ export const articlesData = [
     title: "Japandi Fusion: Scandinavian Warmth Meets Japanese Craft",
     credits: "Marcus Vance",
     heroMedia: {
-      image: article,
+      image: art3,
     },
     sections: [
       {
@@ -71,7 +74,7 @@ export const articlesData = [
     title: "Bespoke Furniture as Functional Art",
     credits: "Studio RP",
     heroMedia: {
-      image: article,
+      image: art4,
     },
     sections: [
       {

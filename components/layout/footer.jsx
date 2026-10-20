@@ -114,7 +114,7 @@ const Footer = () => {
                     className="relative overflow-hidden size-fit group"
                   >
                     <TextLink bgColor="bg-s">
-                      <motion.p
+                      <motion.div
                         style={{ y: manifest }}
                         className="font-chivo font-semibold 
     text-[14px] tracking-widest uppercase 
@@ -123,7 +123,7 @@ const Footer = () => {
                        transition-colors duration-150 ease-[cubic-bezier(0.76,0,0.24,1)]"
                       >
                         {link.label}
-                      </motion.p>
+                      </motion.div>
                     </TextLink>
                   </TransitionLink>
                 ))}
@@ -150,7 +150,7 @@ const Footer = () => {
                     className="relative overflow-hidden size-fit group"
                   >
                     <TextLink bgColor="bg-s">
-                      <motion.p
+                      <motion.div
                         style={{ y: manifest }}
                         className="font-chivo font-semibold 
     text-[14px] tracking-widest uppercase 
@@ -159,7 +159,7 @@ const Footer = () => {
                        transition-colors duration-150 ease-[cubic-bezier(0.76,0,0.24,1)]"
                       >
                         {link.label}
-                      </motion.p>
+                      </motion.div>
                     </TextLink>
                   </TransitionLink>
                 ))}

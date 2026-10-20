@@ -12,7 +12,7 @@ import WorkModal from "@/components/modal/work/work-modal";
 import { FiltersModal } from "@/components/modal/filters/filters-modal";
 import { SearchModal } from "@/components/modal/search/search-modal";
 import { usePageTransition } from "@/store/pageTransition";
-import String from "@/components/ui/string";
+
 import Footer from "@/components/layout/footer";
 
 const ProjectsHero = () => {

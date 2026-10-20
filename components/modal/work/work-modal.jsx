@@ -9,30 +9,24 @@ import { FaStarOfLife } from "react-icons/fa";
 import TextLink from "@/components/ui/text-link";
 import { MdOutlineFileDownload } from "react-icons/md";
 import Image from "next/image";
-import { ClipText } from "@/components/clip-text";
-import { RevealText } from "@/components/reveal-text";
 
-const textSlide = {
-  initial: { y: "100%" },
-  animate: (custom) => ({
-    y: "0%",
-    transition: {
-      duration: 0.8,
-      ease: [0.33, 1, 0.68, 1],
-      delay: custom,
-    },
-  }),
-};
+import { RevealText } from "@/components/reveal-text";
 
 const menuAnim = {
   initial: { clipPath: "inset(0% 100% 0% 0%)" },
   animate: {
     clipPath: "inset(0% 0% 0% 0%)",
-    transition: { duration: 0.5, ease: [0.76, 0, 0.24, 1] },
+    transition: {
+      duration: 0.8,
+      ease: [0.76, 0, 0.24, 1],
+    },
   },
   exit: {
     clipPath: "inset(0% 100% 0% 0%)",
-    transition: { duration: 0.5, ease: [0.76, 0, 0.24, 1] },
+    transition: {
+      duration: 0.8,
+      ease: [0.76, 0, 0.24, 1],
+    },
   },
 };
 
@@ -40,11 +34,17 @@ const overlayAnim = {
   initial: { opacity: 0 },
   animate: {
     opacity: 1,
-    transition: { duration: 0.5, ease: [0.76, 0, 0.24, 1] },
+    transition: {
+      duration: 0.8,
+      ease: [0.76, 0, 0.24, 1],
+    },
   },
   exit: {
     opacity: 0,
-    transition: { duration: 0.5, ease: [0.76, 0, 0.24, 1] },
+    transition: {
+      duration: 0.8,
+      ease: [0.76, 0, 0.24, 1],
+    },
   },
 };
 
@@ -184,45 +184,71 @@ const WorkModalContent = ({ work }) => {
     <div className="size-full flex flex-col items-end justify-between max-lg:gap-5">
       <div className="w-full flex flex-col max-lg:mb-5">
         <div className="mt-25 h-fit overflow-hidden max-lg:mt-20 max-lg:mb-5">
-          <p className="mb-4 text-chivo-p-14">{work.year}</p>
-
-          <motion.h2
-            variants={textSlide}
-            initial="initial"
-            animate="animate"
+          <RevealText
+            text={work.year}
+            className="mb-5 font-chivo font-semibold 
+text-[14px] tracking-widest uppercase text-p/60
+leading-[.9]"
+          />
+          <RevealText
+            text={work.title}
             className="font-neue font-light
                   text-[clamp(36px,6vw,72px)] text-p text-start tracking-[-7%]
                   leading-[.9]"
-          >
-            {work.title}
-            {/*   <span
-              className="
-                relative font- top-1.5 left-2 align-top text-[28px]
-                tracking-[0.3em]
-                max-lg:top-1
-              "
-            >
-              {work.titleMark}
-            </span> */}
-          </motion.h2>
+          />
         </div>
         <div className="mt-10 w-full h-px bg-p/10 max-lg:mt-0"></div>
 
         <div className="mt-10 max-w-200 w-full flex items-start gap-10">
           <div className="flex-2 flex flex-col gap-3">
-            <p className="text-chivo-n-14 text-p/50">Scope</p>
-            <p className="text-chivo-p-14">{work.scope}</p>
+            <RevealText
+              text="Scope"
+              className="font-chivo font-semibold 
+text-[14px] tracking-widest uppercase text-p/60
+leading-[.9]"
+              delay={0.1}
+            />
+            <RevealText
+              text={work.scope}
+              className="font-chivo font-semibold 
+text-[14px] tracking-widest uppercase text-p
+leading-[.9]"
+              delay={0.2}
+            />
           </div>
           <div className="flex-2 flex flex-col gap-3">
-            <p className="text-chivo-n-14 text-p/50">Location</p>
-            <p className="text-chivo-p-14">{work.location}</p>
+            <RevealText
+              text="Location"
+              className="font-chivo font-semibold 
+text-[14px] tracking-widest uppercase text-p/60
+leading-[.9]"
+              delay={0.1}
+            />
+            <RevealText
+              text={work.location}
+              className="font-chivo font-semibold 
+text-[14px] tracking-widest uppercase text-p
+leading-[.9]"
+              delay={0.2}
+            />
           </div>
           <div className="flex-2 flex flex-col gap-3 justify-self-end">
-            <p className="text-chivo-n-14 text-p/50">Services</p>
+            <RevealText
+              text="Services"
+              className="font-chivo font-semibold 
+    text-[14px] tracking-widest uppercase text-p/60
+    leading-[.9]"
+              delay={0.1}
+            />
             {work.services.map((ser, i) => (
-              <p key={i} className="text-chivo-p-14">
-                {ser}
-              </p>
+              <RevealText
+                key={i}
+                text={ser}
+                className="font-chivo font-semibold 
+    text-[14px] tracking-widest uppercase text-p
+    leading-[.9]"
+                delay={0.2}
+              />
             ))}
           </div>
         </div>
@@ -230,6 +256,9 @@ const WorkModalContent = ({ work }) => {
         <figure className="relative mt-15 w-full h-[75vh] overflow-hidden max-lg:h-[60vh] max-lg:mt-5">
           <Image
             src={work.heroMedia.image}
+            alt="0"
+            width={2000}
+            height={2000}
             className="object-cover brightness-75 size-full"
           />
         </figure>
@@ -248,7 +277,7 @@ const WorkModalContent = ({ work }) => {
                 className="font-chivo font-semibold 
     text-[14px] tracking-widest uppercase text-p
     leading-[.9]"
-                delay={0.1}
+                delay={0.2}
               />
             </div>
           </div>
@@ -257,14 +286,14 @@ const WorkModalContent = ({ work }) => {
               <RevealText
                 text={work.size}
                 className="mb-10 font-neue font-light text-[clamp(36px,6vw,72px)] text-p text-start tracking-[-7%] leading-none"
-                delay={0.2}
+                delay={0.3}
               />
               <RevealText
                 text="square meters"
                 className="font-chivo font-semibold 
     text-[14px] tracking-widest uppercase text-p
     leading-[.9]"
-                delay={0.2}
+                delay={0.4}
               />
             </div>
           </div>
@@ -275,14 +304,14 @@ const WorkModalContent = ({ work }) => {
             <RevealText
               text={work.conclusion}
               className="mb-10 font-neue font-light text-[clamp(36px,6vw,72px)] text-p text-start tracking-[-7%] leading-none"
-              delay={0.3}
+              delay={0.5}
             />
             <RevealText
               text="Completion"
               className="font-chivo font-semibold 
     text-[14px] tracking-widest uppercase text-p
     leading-[.9]"
-              delay={0.3}
+              delay={0.6}
             />
           </div>
         </div>
@@ -306,13 +335,13 @@ const WorkModalContent = ({ work }) => {
         <div className="w-full flex items-start max-lg:flex-col">
           <div className="w-full flex-1 max-lg:mb-10">
             <div className="flex items-center gap-5">
-              <span className="triangle-p left-1" />
+              <span className="relative left-1 -top-0.5 size-2 rotate-45 bg-p" />
               <RevealText
                 text="blueprint download"
                 className="font-chivo font-semibold 
     text-[14px] tracking-widest uppercase text-p
     leading-[.9]"
-                delay={0.6}
+                delay={0.2}
               />
             </div>
           </div>
@@ -332,12 +361,20 @@ const WorkModalContent = ({ work }) => {
                 }}
                 className="h-15 px-5 w-full bg-p backdrop-blur-2xl flex items-center justify-between group cursor-pointer"
               >
-                <p className="text-chivo-n-14 text-s group-hover:text-p transition-colors duration-500 uppercase">
+                <p
+                  className="font-chivo font-semibold 
+    text-[14px] tracking-widest 
+    leading-[.9] text-s group-hover:text-p transition-colors duration-500 uppercase"
+                >
                   {blueprintName}
                 </p>
                 <div className="flex items-center gap-2 underline underline-offset-2 text-s group-hover:text-p transition-colors duration-500">
                   <MdOutlineFileDownload className="text-s text-[20px] group-hover:text-p transition-colors duration-500" />
-                  <p className="text-chivo-n-14 text-s group-hover:text-p transition-colors duration-500 uppercase">
+                  <p
+                    className="font-chivo font-semibold 
+    text-[14px] tracking-widest  
+    leading-[.9] text-s group-hover:text-p transition-colors duration-500 uppercase"
+                  >
                     download pdf
                   </p>
                 </div>
@@ -364,12 +401,22 @@ const WorkModalContent = ({ work }) => {
           </div>
 
           <div className="flex-1 pb-5 flex flex-col gap-3">
-            <p className="text-chivo-n-14 text-p/75">Collaborators</p>
+            <p
+              className="font-chivo font-semibold 
+    text-[14px] tracking-widest uppercase
+    leading-[.9] text-p/60"
+            >
+              Collaborators
+            </p>
             <div className="flex flex-col items-start justify-center">
               {work.credits.map((item, i) => (
                 <div className="flex items-center" key={i}>
                   <TextLink bgColor="bg-p">
-                    <span className="text-chivo-n-14 text-p text-start group-hover:text-s transition-colors duration-150">
+                    <span
+                      className="font-chivo font-semibold 
+    text-[14px] tracking-widest uppercase
+    leading-[.9] text-p text-start group-hover:text-s transition-colors duration-150"
+                    >
                       {item}
                     </span>
                   </TextLink>
@@ -392,6 +439,9 @@ const WorkImageBlock = ({ block }) => {
     <figure className="relative mt-2.5 w-full h-[75vh] overflow-hidden max-lg:h-[40vh] max-lg:mt-5">
       <Image
         src={block.image}
+        width={2000}
+        height={2000}
+        alt="0"
         className="object-cover brightness-75 size-full"
       />
       {block.overlayText && (
@@ -408,13 +458,13 @@ const WorkTextBlock = ({ block }) => {
     <div className="my-10 w-full flex max-lg:flex-col max-lg:gap-5">
       <div className="flex-1 max-lg:mb-5">
         <div className="flex items-center gap-5">
-          <span className="triangle-p left-1" />
+          <span className="relative left-1 -top-0.5 size-2 rotate-45 bg-p" />
           <RevealText
             text={block.label}
             className="font-chivo font-semibold 
     text-[14px] tracking-widest uppercase text-p
     leading-[.9]"
-            delay={0.4}
+            delay={0.1}
           />
         </div>
       </div>
@@ -425,8 +475,9 @@ const WorkTextBlock = ({ block }) => {
             <div key={i} className="max-w-150 mb-5 h-fit overflow-hidden">
               <RevealText
                 text={phrases}
-                className="mb-10 font-neue font-medium text-[clamp(18px,6vw,22px)] text-p text-start tracking-[-4%] leading-none"
-                delay={0.5}
+                className="mb-10 font-neue font-normal 
+    text-p text-[clamp(16px,4vw,20px)] tracking-[-4%] leading-none"
+                delay={0.2}
               />
             </div>
           ),

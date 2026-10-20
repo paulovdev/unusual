@@ -1,51 +1,11 @@
-"use client";
-import { useEffect, useRef } from "react";
+import StudioHero from "@/features/studio/studio";
 
-import Nav from "@/components/layout/nav";
-import { RevealText } from "@/components/reveal-text";
-
-import StudioAbout from "@/features/studio/studio.about";
-import StudioIntro from "@/features/studio/studio.intro";
-import StudioNumbers from "@/features/studio/studio.numbers";
-import StudioTeam from "@/features/studio/studio.team";
-import StudioTestimonials from "@/features/studio/studio.testimonials";
-import { usePageTransition } from "@/store/pageTransition";
-
-import Lenis from "lenis";
-import Image from "next/image";
-import Footer from "@/components/layout/footer";
-import StudioApproach from "@/features/studio/studio.approach";
-
-export default function StudioHero() {
-  const lenisRef = useRef(null);
-  const { isReady } = usePageTransition();
-
-  useEffect(() => {
-    const lenis = new Lenis({
-      autoRaf: true,
-      syncTouch: true,
-    });
-
-    lenisRef.current = lenis;
-
-    return () => {
-      lenis.destroy();
-    };
-  }, []);
+export default async function Page() {
   return (
     <>
-      <Nav lenis={lenisRef} />
-      {isReady && (
-        <main className="relative bg-bg-s">
-          <StudioIntro />
-          <StudioAbout />
-          <StudioNumbers />
-          <StudioApproach />
-          <StudioTeam />
-          <StudioTestimonials />
-        </main>
-      )}
-      <Footer />
+      <main className="relative min-h-screen">
+        <StudioHero />
+      </main>
     </>
   );
 }
