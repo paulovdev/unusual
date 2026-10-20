@@ -1,27 +1,13 @@
 "use client";
 
-import ArticleModal from "@/components/modal/article/article-modal";
-
 import { articlesData } from "@/data/articles-data";
 
 import { useState } from "react";
-import { AnimatePresence, motion } from "motion/react";
+import { motion } from "motion/react";
 import { useInView } from "react-intersection-observer";
 import { GoArrowLeft, GoArrowRight } from "react-icons/go";
 import Image from "next/image";
 import { RevealText } from "@/components/reveal-text";
-
-const textSlide = {
-  initial: { y: "100%" },
-  animate: (custom) => ({
-    y: "0%",
-    transition: {
-      duration: 0.8,
-      ease: [0.33, 1, 0.68, 1],
-      delay: custom,
-    },
-  }),
-};
 
 const ArticleCard = ({ item, index, inView, onClick, activeArticle }) => {
   return (
@@ -83,8 +69,7 @@ const ArticleCard = ({ item, index, inView, onClick, activeArticle }) => {
   );
 };
 
-const HomeArticles = ({ lenis }) => {
-  const [activeArticle, setActiveArticle] = useState(null);
+const HomeArticles = ({ lenis, activeArticle, setActiveArticle }) => {
   const [startIndex, setStartIndex] = useState(0);
 
   const itemsPerPage = 3;
@@ -107,130 +92,115 @@ const HomeArticles = ({ lenis }) => {
   });
 
   return (
-    <>
-      <section
-        id="articles"
-        ref={ref}
-        className="relative py-15 px-5 overflow-hidden max-lg:px-2.5"
-      >
-        <div className="mb-10 flex items-center justify-between">
-          <div className="flex items-center gap-4">
-            <span className="relative -top-0.5 size-2 rotate-45 bg-p" />
-            <RevealText
-              text="articles"
-              className="font-chivo font-semibold 
-              text-[14px] tracking-widest uppercase text-p
-              leading-[.9]"
-            />
-          </div>
-
-          <div className="flex items-center gap-5">
-            <motion.button
-              whileTap={canGoPrev ? { scale: 0.95 } : {}}
-              whileHover={
-                canGoPrev
-                  ? {
-                      scale: 1.1,
-                      backgroundColor: "rgba(255,255,255,.8)",
-                    }
-                  : {}
-              }
-              disabled={!canGoPrev}
-              onClick={handlePrev}
-              className={`
-              size-15 border border-p/10 backdrop-blur-2xl flex items-center justify-center
-              ${
-                canGoPrev
-                  ? "bg-p cursor-pointer"
-                  : "bg-p/50 cursor-not-allowed opacity-50"
-              }
-              `}
-            >
-              <GoArrowLeft
-                className={`text-[24px] transition-colors ${
-                  canGoPrev ? "text-s" : "text-s opacity-50"
-                }`}
-              />
-            </motion.button>
-
-            <motion.button
-              whileTap={canGoNext ? { scale: 0.95 } : {}}
-              whileHover={
-                canGoNext
-                  ? {
-                      scale: 1.1,
-                      backgroundColor: "rgba(255,255,255,.8)",
-                    }
-                  : {}
-              }
-              disabled={!canGoNext}
-              onClick={handleNext}
-              className={`
-              size-15 border border-p/10 backdrop-blur-2xl flex items-center justify-center
-              ${
-                canGoNext
-                  ? "bg-p cursor-pointer"
-                  : "bg-p/50 cursor-not-allowed opacity-50"
-              }
-              `}
-            >
-              <GoArrowRight
-                className={`text-[24px] transition-colors ${
-                  canGoNext ? "text-s" : "text-s opacity-50"
-                }`}
-              />
-            </motion.button>
-          </div>
-        </div>
-
-        <div className="overflow-hidden w-full">
-          <motion.div
-            animate={{
-              x: `-${startIndex * 33.333}%`,
-            }}
-            transition={{
-              duration: 0.8,
-              ease: [0.88, 0, 0.24, 1],
-            }}
-            className="flex gap-2.5"
-          >
-            {articlesData.map((item, i) => (
-              <div
-                key={item.id || i}
-                className="
-                min-w-[calc(33.333%-7px)]
-                max-lg:min-w-[calc(50%-10px)]
-                max-md:min-w-full
-                "
-              >
-                <ArticleCard
-                  item={item}
-                  index={i}
-                  inView={inView}
-                  activeArticle={activeArticle}
-                  onClick={() => {
-                    setActiveArticle(item);
-                  }}
-                />
-              </div>
-            ))}
-          </motion.div>
-        </div>
-      </section>
-
-      <AnimatePresence mode="wait">
-        {activeArticle && (
-          <ArticleModal
-            article={activeArticle}
-            isOpen={!!activeArticle}
-            onClose={() => {
-              setActiveArticle(null);
-            }}
-            lenis={lenis}
+    <section
+      id="articles"
+      ref={ref}
+      className="relative py-15 px-5 overflow-hidden max-lg:px-2.5"
+    >
+      <div className="mb-10 flex items-center justify-between">
+        <div className="flex items-center gap-4">
+          <span className="relative -top-0.5 size-2 rotate-45 bg-p" />
+          <RevealText
+            text="articles"
+            className="font-chivo font-semibold 
+            text-[14px] tracking-widest uppercase text-p
+            leading-[.9]"
           />
-        )}
-      </AnimatePresence>
-    </>
+        </div>
+
+        <div className="flex items-center gap-5">
+          <motion.button
+            whileTap={canGoPrev ? { scale: 0.95 } : {}}
+            whileHover={
+              canGoPrev
+                ? {
+                    scale: 1.1,
+                    backgroundColor: "rgba(255,255,255,.8)",
+                  }
+                : {}
+            }
+            disabled={!canGoPrev}
+            onClick={handlePrev}
+            className={`
+            size-15 border border-p/10 backdrop-blur-2xl flex items-center justify-center
+            ${
+              canGoPrev
+                ? "bg-p cursor-pointer"
+                : "bg-p/50 cursor-not-allowed opacity-50"
+            }
+            `}
+          >
+            <GoArrowLeft
+              className={`text-[24px] transition-colors ${
+                canGoPrev ? "text-s" : "text-s opacity-50"
+              }`}
+            />
+          </motion.button>
+
+          <motion.button
+            whileTap={canGoNext ? { scale: 0.95 } : {}}
+            whileHover={
+              canGoNext
+                ? {
+                    scale: 1.1,
+                    backgroundColor: "rgba(255,255,255,.8)",
+                  }
+                : {}
+            }
+            disabled={!canGoNext}
+            onClick={handleNext}
+            className={`
+            size-15 border border-p/10 backdrop-blur-2xl flex items-center justify-center
+            ${
+              canGoNext
+                ? "bg-p cursor-pointer"
+                : "bg-p/50 cursor-not-allowed opacity-50"
+            }
+            `}
+          >
+            <GoArrowRight
+              className={`text-[24px] transition-colors ${
+                canGoNext ? "text-s" : "text-s opacity-50"
+              }`}
+            />
+          </motion.button>
+        </div>
+      </div>
+
+      <div className="overflow-hidden w-full">
+        <motion.div
+          animate={{
+            x: `-${startIndex * 33.333}%`,
+          }}
+          transition={{
+            duration: 0.8,
+            ease: [0.88, 0, 0.24, 1],
+          }}
+          className="flex gap-2.5"
+        >
+          {articlesData.map((item, i) => (
+            <div
+              key={item.id || i}
+              className="
+              min-w-[calc(33.333%-7px)]
+              max-lg:min-w-[calc(50%-10px)]
+              max-md:min-w-full
+              "
+            >
+              <ArticleCard
+                item={item}
+                index={i}
+                inView={inView}
+                activeArticle={activeArticle}
+                onClick={() => {
+                  setActiveArticle(item);
+                }}
+              />
+            </div>
+          ))}
+        </motion.div>
+      </div>
+    </section>
   );
 };
 

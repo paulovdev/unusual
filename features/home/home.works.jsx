@@ -3,7 +3,6 @@
 import { useState, useRef, useEffect } from "react";
 import { AnimatePresence, motion, useScroll, useTransform } from "motion/react";
 
-import WorkModal from "@/components/modal/work/work-modal";
 import { useInView } from "react-intersection-observer";
 import { worksData } from "@/data/works-data";
 import Image from "next/image";
@@ -29,14 +28,7 @@ const textSlideAnim = {
   },
 };
 
-const Works = ({
-  work,
-
-  setActiveWork,
-  activeWork,
-  index,
-  setActiveIndex,
-}) => {
+const Works = ({ work, setActiveWork, activeWork, index, setActiveIndex }) => {
   const [hover, setHover] = useState(null);
   const { x, y } = useMousePosition();
 
@@ -227,8 +219,7 @@ const Works = ({
   );
 };
 
-const HomeWorks = ({ work = worksData, lenis }) => {
-  const [activeWork, setActiveWork] = useState(null);
+const HomeWorks = ({ work = worksData, lenis, activeWork, setActiveWork }) => {
   const [activeIndex, setActiveIndex] = useState(0);
 
   const workFeatureFilter = work.filter((item) =>
@@ -255,68 +246,92 @@ const HomeWorks = ({ work = worksData, lenis }) => {
   }
 
   return (
-    <>
-      <section
-        id="works"
-        data-nav-theme="light"
-        className="relative pointer-events-none"
+    <section
+      id="works"
+      data-nav-theme="light"
+      className="relative pointer-events-none"
+    >
+      <div
+        className="relative top-0 px-5 grid grid-cols-5 z-50 
+        max-lg:flex max-lg:flex-col max-lg:items-start max-md:px-0"
       >
-        <div
-          className="relative top-0 px-5 grid grid-cols-5 z-50 
-          max-lg:flex max-lg:flex-col max-lg:items-start max-md:px-0"
-        >
-          <div className="relative top-15 px-5 col-start-3 size-fit flex items-center gap-4">
-            <span className="relative -top-0.5 size-2 rotate-45 bg-s" />
-            <RevealText
-              text="SELECTED CASE STUDIES"
-              className="font-chivo font-semibold 
-              text-[14px] tracking-widest uppercase text-s
-              leading-[.9]"
-            />
-          </div>
+        <div className="relative top-15 px-5 col-start-3 size-fit flex items-center gap-4">
+          <span className="relative -top-0.5 size-2 rotate-45 bg-s" />
+          <RevealText
+            text="SELECTED CASE STUDIES"
+            className="font-chivo font-semibold 
+            text-[14px] tracking-widest uppercase text-s
+            leading-[.9]"
+          />
         </div>
+      </div>
 
-        <div className="absolute inset-0 z-70">
-          <div
-            className="sticky top-0 h-screen p-5 grid grid-cols-5 
-          max-lg:flex max-lg:justify-end max-lg:items-end max-lg:px-5"
-          >
-            <div className="col-start-3 col-span-full mb-2.5 ml-3 flex items-end gap-15 max-lg:gap-10">
-              <div className="w-60 h-15 absolute bottom-1.5 right-[49%] pointer-events-auto z-70"></div>
-              {workFeatureFilter.map((item, index) => (
-                <button
-                  key={item.id}
-                  onClick={() => handleAnchor(index, item)}
-                  className="relative w-2.5 h-2.5 flex items-center justify-center group z-90 pointer-events-auto
-                 "
-                >
+      <div className="absolute inset-0 z-70">
+        <div
+          className="sticky top-0 h-screen p-5 grid grid-cols-5 
+        max-lg:flex max-lg:justify-end max-lg:items-end max-lg:px-5"
+        >
+          <div className="col-start-3 col-span-full mb-2.5 ml-3 flex items-end gap-15 max-lg:gap-10">
+            <div className="w-60 h-15 absolute bottom-1.5 right-[49%] pointer-events-auto z-70"></div>
+            {workFeatureFilter.map((item, index) => (
+              <button
+                key={item.id}
+                onClick={() => handleAnchor(index, item)}
+                className="relative w-2.5 h-2.5 flex items-center justify-center group z-90 pointer-events-auto
+               "
+              >
+                <motion.span
+                  animate={{
+                    opacity: activeIndex === index ? 1 : 0.5,
+                    rotate: activeIndex === index ? 135 : 45,
+                  }}
+                  transition={{
+                    duration: 0.7,
+                    ease: [0.76, 0, 0.24, 1],
+                  }}
+                  className="absolute w-2.5 h-2.5 bg-bg-s"
+                />
+
+                {activeIndex !== index && (
                   <motion.span
+                    initial={{
+                      opacity: 0,
+                      rotate: 45,
+                    }}
                     animate={{
-                      opacity: activeIndex === index ? 1 : 0.5,
-                      rotate: activeIndex === index ? 135 : 45,
+                      opacity: 0,
+                      rotate: 45,
+                    }}
+                    whileHover={{
+                      opacity: 1,
                     }}
                     transition={{
-                      duration: 0.7,
+                      duration: 0.5,
                       ease: [0.76, 0, 0.24, 1],
                     }}
-                    className="absolute w-2.5 h-2.5 bg-bg-s"
+                    className="absolute -top-0.75 -left-0.75 
+                    w-4 h-4 border border-[#FFFFFF]
+                    "
                   />
+                )}
 
-                  {activeIndex !== index && (
+                <AnimatePresence mode="wait">
+                  {activeIndex === index && (
                     <motion.span
+                      key="active"
                       initial={{
+                        scale: 0,
                         opacity: 0,
                         rotate: 45,
                       }}
                       animate={{
-                        opacity: 0,
+                        scale: 1,
+                        opacity: 1,
                         rotate: 45,
                       }}
-                      whileHover={{
-                        opacity: 1,
-                      }}
+                      exit={{ rotate: 45, scale: 0, opacity: 0 }}
                       transition={{
-                        duration: 0.5,
+                        duration: 0.6,
                         ease: [0.76, 0, 0.24, 1],
                       }}
                       className="absolute -top-0.75 -left-0.75 
@@ -324,63 +339,26 @@ const HomeWorks = ({ work = worksData, lenis }) => {
                       "
                     />
                   )}
-
-                  <AnimatePresence mode="wait">
-                    {activeIndex === index && (
-                      <motion.span
-                        key="active"
-                        initial={{
-                          scale: 0,
-                          opacity: 0,
-                          rotate: 45,
-                        }}
-                        animate={{
-                          scale: 1,
-                          opacity: 1,
-                          rotate: 45,
-                        }}
-                        exit={{ rotate: 45, scale: 0, opacity: 0 }}
-                        transition={{
-                          duration: 0.6,
-                          ease: [0.76, 0, 0.24, 1],
-                        }}
-                        className="absolute -top-0.75 -left-0.75 
-                        w-4 h-4 border border-[#FFFFFF]
-                        "
-                      />
-                    )}
-                  </AnimatePresence>
-                </button>
-              ))}
-            </div>
+                </AnimatePresence>
+              </button>
+            ))}
           </div>
         </div>
+      </div>
 
-        <div className="h-full flex flex-col items-center justify-center select-none">
-          {workFeatureFilter.map((item, index) => (
-            <Works
-              key={item.id}
-              work={item}
-              index={index}
-              setActiveWork={setActiveWork}
-              activeWork={activeWork}
-              setActiveIndex={setActiveIndex}
-            />
-          ))}
-        </div>
-      </section>
-
-      <AnimatePresence mode="wait">
-        {activeWork && (
-          <WorkModal
-            work={activeWork}
-            isOpen={!!activeWork}
-            onClose={() => setActiveWork(null)}
-            lenis={lenis}
+      <div className="h-full flex flex-col items-center justify-center select-none">
+        {workFeatureFilter.map((item, index) => (
+          <Works
+            key={item.id}
+            work={item}
+            index={index}
+            setActiveWork={setActiveWork}
+            activeWork={activeWork}
+            setActiveIndex={setActiveIndex}
           />
-        )}
-      </AnimatePresence>
-    </>
+        ))}
+      </div>
+    </section>
   );
 };
 

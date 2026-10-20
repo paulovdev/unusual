@@ -240,6 +240,7 @@ export const SearchModal = ({ lenis, work = worksData }) => {
                         width={1000}
                         height={1000}
                         alt=""
+                        placeholder="blur"
                         className="size-full object-cover brightness-90 group-hover:scale-110
            transition-all duration-500 ease-[cubic-bezier(0.76,0,0.24,1)]"
                       />
